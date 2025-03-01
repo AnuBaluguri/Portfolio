@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anu Baluguri - Portfolio</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+:root {
+--neon-green: #00FF9D;
+--dark-bg: #0D1117;
+}
+body {
+background-color: var(--dark-bg);
+color: white;
+min-height: 100vh;
+}
+.neon-border {
+position: relative;
+}
+.neon-border::after {
+content: '';
+position: absolute;
+top: -2px;
+left: -2px;
+right: -2px;
+bottom: -2px;
+border: 2px solid var(--neon-green);
+border-radius: inherit;
+opacity: 0.5;
+pointer-events: none;
+}
+.hexagon {
+clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+.nav-link {
+position: relative;
+}
+.nav-link::after {
+content: '';
+position: absolute;
+width: 0;
+height: 2px;
+bottom: -4px;
+left: 0;
+background-color: var(--neon-green);
+transition: width 0.3s ease;
+}
+.nav-link:hover::after {
+width: 100%;
+}
+.service-card {
+transition: transform 0.3s ease;
+}
+.service-card:hover {
+transform: translateY(-10px);
+}
+</style>
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#00FF9D',
+secondary: '#1A1E23'
+},
+borderRadius: {
+'none': '0px',
+'sm': '4px',
+DEFAULT: '8px',
+'md': '12px',
+'lg': '16px',
+'xl': '20px',
+'2xl': '24px',
+'3xl': '32px',
+'full': '9999px',
+'button': '8px'
+}
+}
+}
+}
+</script>
+</head>
+<body class="font-sans">
+<header class="fixed w-full top-0 z-50 bg-[#0D1117] border-b border-gray-800">
+<nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+<a href="#home" class="text-3xl font-['Pacifico'] text-primary">AB</a>
+<div class="hidden md:flex space-x-8">
+<a href="#home" class="nav-link text-white hover:text-primary">HOME</a>
+<a href="about.html" class="nav-link text-white hover:text-primary">ABOUT</a>
+<a href="projects.html" class="nav-link text-white hover:text-primary">PROJECTS</a>
+<a href="certifications.html" class="nav-link text-white hover:text-primary">CERTIFICATIONS</a>
+<a href="contact.html" class="nav-link text-white hover:text-primary">CONTACT</a>
+</div>
+<button class="md:hidden text-white focus:outline-none">
+<i class="ri-menu-line text-2xl"></i>
+</button>
+</nav>
+</header>
+<main class="pt-20">
+<section id="home" class="container mx-auto px-6 py-20 flex flex-col md:flex-row items-center">
+<div class="md:w-1/2 mb-10 md:mb-0">
+<h1 class="text-5xl font-bold mb-4">HI, I'M ANU!</h1>
+<h2 class="text-4xl font-bold mb-2">MACHINE LEARNING</h2>
+<h2 class="text-4xl font-bold text-primary mb-6">ENGINEER</h2>
+<p class="text-gray-400 mb-8 max-w-lg">
+AI and Machine Learning specialist seeking full-time opportunities starting May 2025. My expertise lies in building efficient, scalable AI systems with a strong focus on model security, optimization, and robustness. Experienced in leveraging transformers, reinforcement learning, and knowledge distillation to enhance NLP and generative AI applications.
+</p>
+<div class="flex space-x-4">
+<a href="https://docs.google.com/document/d/1nqL3pL48S-MHFNT5ZqF4qolrm4WsB9Gf0WeFecMHgC0/edit?usp=sharing" target="_blank" class="bg-primary text-black px-6 py-3 rounded-button flex items-center space-x-2 hover:opacity-90">
+<i class="ri-download-line"></i>
+<span>Download CV</span>
+</a>
+<a href="contact.html" class="border border-primary text-primary px-6 py-3 rounded-button flex items-center space-x-2 hover:bg-primary hover:text-black transition-colors">
+<i class="ri-message-3-line"></i>
+<span>Contact</span>
+</a>
+</div>
+</div>
+<div class="md:w-1/2 relative">
+<div class="hexagon neon-border overflow-hidden w-[400px] h-[400px] mx-auto">
+<img src="https://static.readdy.ai/image/32f306570080d43ecb79c0f60fdf4d99/f384e23937c07e1fd95fa701fe44e6ae.jpeg"
+alt="Anu Baluguri"
+class="w-full h-full object-cover">
+</div>
+</div>
+</section>
+
+ 
+
+</main>
+<script>
+document.querySelector('.md\\:hidden').addEventListener('click', function() {
+const nav = document.querySelector('.md\\:flex');
+nav.classList.toggle('hidden');
+nav.classList.toggle('flex');
+nav.classList.toggle('flex-col');
+nav.classList.toggle('absolute');
+nav.classList.toggle('top-16');
+nav.classList.toggle('left-0');
+nav.classList.toggle('w-full');
+nav.classList.toggle('bg-[#0D1117]');
+nav.classList.toggle('p-4');
+});
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function (e) {
+e.preventDefault();
+const targetId = this.getAttribute('href');
+const targetElement = document.querySelector(targetId);
+if (targetElement) {
+const headerOffset = 80;
+const elementPosition = targetElement.getBoundingClientRect().top;
+const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+window.scrollTo({
+top: offsetPosition,
+behavior: 'smooth'
+});
+}
+});
+});
+</script>
+</body>
+</html>

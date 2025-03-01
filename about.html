@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anu Baluguri - Portfolio</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+:root {
+--neon-green: #00FF9D;
+--dark-bg: #0D1117;
+}
+body {
+background-color: var(--dark-bg);
+color: white;
+min-height: 100vh;
+}
+.neon-border {
+position: relative;
+}
+.neon-border::after {
+content: '';
+position: absolute;
+top: -2px;
+left: -2px;
+right: -2px;
+bottom: -2px;
+border: 2px solid var(--neon-green);
+border-radius: inherit;
+opacity: 0.5;
+pointer-events: none;
+}
+.hexagon {
+clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+.nav-link {
+position: relative;
+}
+.nav-link::after {
+content: '';
+position: absolute;
+width: 0;
+height: 2px;
+bottom: -4px;
+left: 0;
+background-color: var(--neon-green);
+transition: width 0.3s ease;
+}
+.nav-link:hover::after {
+width: 100%;
+}
+.service-card {
+transition: transform 0.3s ease;
+}
+.service-card:hover {
+transform: translateY(-10px);
+}
+</style>
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#00FF9D',
+secondary: '#1A1E23'
+},
+borderRadius: {
+'none': '0px',
+'sm': '4px',
+DEFAULT: '8px',
+'md': '12px',
+'lg': '16px',
+'xl': '20px',
+'2xl': '24px',
+'3xl': '32px',
+'full': '9999px',
+'button': '8px'
+}
+}
+}
+}
+</script>
+</head>
+<body class="font-sans">
+<header class="fixed w-full top-0 z-50 bg-[#0D1117] border-b border-gray-800">
+<nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+<a href="index.html" class="text-3xl font-['Pacifico'] text-primary">AB</a>
+<div class="hidden md:flex space-x-8">
+<a href="index.html" class="nav-link text-white hover:text-primary">HOME</a>
+<a href="about.html" class="nav-link text-white hover:text-primary">ABOUT</a>
+<a href="projects.html" class="nav-link text-white hover:text-primary">PROJECTS</a>
+<a href="certifications.html" class="nav-link text-white hover:text-primary">CERTIFICATIONS</a>
+<a href="contact.html" class="nav-link text-white hover:text-primary">CONTACT</a>
+</div>
+<button class="md:hidden text-white focus:outline-none">
+<i class="ri-menu-line text-2xl"></i>
+</button>
+</nav>
+</header>
+<main class="pt-20">
+<section id="about" class="container mx-auto px-6">
+<div class="flex flex-col md:flex-row items-center gap-16">
+<div class="md:w-1/2">
+<div class="relative">
+<div class="absolute -top-6 -left-6 w-24 h-24 border-t-2 border-l-2 border-primary"></div>
+<img src="https://static.readdy.ai/image/32f306570080d43ecb79c0f60fdf4d99/8c568429620d4e5f80d545ae4a5aa6df.png"
+alt="Anu Baluguri"
+class="w-full h-[600px] object-cover rounded-lg">
+<div class="absolute -bottom-6 -right-6 w-24 h-24 border-b-2 border-r-2 border-primary"></div>
+</div>
+</div>
+<div class="md:w-1/2">
+<h3 class="text-primary uppercase tracking-wider mb-4 font-bold">ABOUT ME</h3>
+<h2 class="text-4xl font-bold mb-8">Transforming Complex Problems into Elegant Solutions</h2>
+<div class="space-y-6 text-gray-400">
+<p>As a Master's student in Computer Science with a focus on AI and Machine Learning, I am dedicated to exploring and implementing cutting-edge solutions in the field. My academic journey has equipped me with strong theoretical foundations and practical experience in developing intelligent systems.</p>
+<p>I'm passionate about leveraging AI technologies to solve complex problems while ensuring ethical considerations and real-world applicability.</p>
+</div>
+<div class="mt-12 grid grid-cols-2 gap-8">
+<div class="p-6 bg-[#0D1117] rounded-lg">
+<div class="text-3xl font-bold text-primary mb-2">8+</div>
+<div class="text-sm text-gray-400">Projects Completed</div>
+</div>
+<div class="p-6 bg-[#0D1117] rounded-lg">
+<div class="text-3xl font-bold text-primary mb-2">4.0</div>
+<div class="text-sm text-gray-400">GPA</div>
+</div>
+</div>
+<a href="https://docs.google.com/document/d/1nqL3pL48S-MHFNT5ZqF4qolrm4WsB9Gf0WeFecMHgC0/edit?usp=sharing" target="_blank" class="mt-12 bg-primary text-black px-8 py-4 rounded-button flex items-center space-x-3 hover:opacity-90 transition-all">
+<i class="ri-download-line text-xl"></i>
+<span class="font-bold">Download Resume</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+    
