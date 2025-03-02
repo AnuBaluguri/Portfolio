@@ -172,6 +172,7 @@ transform: translateY(-10px);
     opacity: 0.3;
 }
 
+
 @keyframes subtleGlow {
     0%, 100% {
         opacity: 0.5;
@@ -303,21 +304,37 @@ DEFAULT: '8px',
 </div>
 
 <!-- Project Details Modal -->
-<div id="projectModal" class="fixed inset-0 z-50 hidden" style="display: none;">
-    <!-- Backdrop overlay -->
-    <div class="absolute inset-0 bg-black bg-opacity-50"></div>
-    <!-- Modal container with scrollable content -->
-    <div class="absolute inset-0 flex items-center justify-center p-4 overflow-y-auto">
-        <!-- Actual modal content -->
-        <div class="bg-[#0D1117] p-8 rounded-lg w-full max-w-2xl relative">
-            <button onclick="closeProjectModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white">
-                <i class="ri-close-line text-2xl"></i>
-            </button>
-            <div id="projectContent" class="pr-4"></div>
-        </div>
+<div id="projectModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+    <div class="fixed top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 bg-[#0D1117] p-8 rounded-lg max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+        <button onclick="closeProjectModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white">
+            <i class="ri-close-line text-2xl"></i>
+        </button>
+        <div id="projectContent"></div>
     </div>
 </div>
+
 <script>
+function showProjectDetails(projectId) {
+    const modal = document.getElementById('projectModal');
+    const content = document.getElementById('projectContent');
+    content.innerHTML = projectDetails[projectId].description;
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+}
+
+function closeProjectModal() {
+    const modal = document.getElementById('projectModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+// Close modal when clicking outside
+document.getElementById('projectModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeProjectModal();
+    }
+});
+
 // Load all projects data upfront
 const allProjects = {
     visible: [
@@ -600,32 +617,7 @@ document.addEventListener('DOMContentLoaded', function() {
     filterProjects();
 });
 </script>
-</div>
-</div>
-</div>
-<script>
-function showProjectDetails(projectId) {
-    const modal = document.getElementById('projectModal');
-    const content = document.getElementById('projectContent');
-    content.innerHTML = projectDetails[projectId].description;
-    
-    modal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-}
 
-function closeProjectModal() {
-    const modal = document.getElementById('projectModal');
-    modal.style.display = 'none';
-    document.body.style.overflow = 'auto';
-}
-
-// Close modal when clicking outside
-document.getElementById('projectModal').addEventListener('click', function(e) {
-    if (e.target === this) {
-        closeProjectModal();
-    }
-});
-</script>
 <div class="text-center mt-12">
 <button onclick="loadMoreProjects()" class="bg-[#0D1117] text-white px-8 py-3 rounded-lg hover:bg-gray-800">
 Load More
