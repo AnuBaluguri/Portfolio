@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+<link href="transition.css" rel="stylesheet">
 <style>
 :where([class^="ri-"])::before { content: "\f3c2"; }
 :root {
@@ -60,6 +61,134 @@ transition: transform 0.3s ease;
 .service-card:hover {
 transform: translateY(-10px);
 }
+.project-item {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.project-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 255, 157, 0.1);
+}
+.project-item:hover .project-overlay {
+    opacity: 1;
+}
+.project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(13, 17, 23, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.view-details {
+    color: var(--neon-green);
+    border: 2px solid var(--neon-green);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+.view-details:hover {
+    background: var(--neon-green);
+    color: var(--dark-bg);
+}
+.page-transition {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--dark-bg);
+    transform: translateX(100%);
+    z-index: 9999;
+    pointer-events: none;
+    transition: transform 0.4s ease;
+}
+
+.page-transition::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: var(--neon-green);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.3s ease;
+}
+
+.page-transition.active {
+    transform: translateX(0);
+}
+
+.page-transition.active::before {
+    transform: scaleY(1);
+}
+
+/* Dynamic Background */
+.bg-[#0D1117] {
+    background: var(--dark-bg);
+}
+
+#projects {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    background: var(--dark-bg);
+}
+
+#projects::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(0, 255, 157, 0.03) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(0, 255, 157, 0.03) 0%, transparent 40%);
+    z-index: -1;
+    animation: subtleGlow 20s ease infinite;
+    pointer-events: none;
+    mix-blend-mode: screen;
+}
+
+#projects::after {
+    content: '';
+    position: absolute;
+    inset: -50%;
+    background: 
+        repeating-linear-gradient(45deg,
+            rgba(0, 255, 157, 0.01) 0%,
+            transparent 2%,
+            transparent 5%
+        );
+    z-index: -2;
+    animation: subtlePattern 30s linear infinite;
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+@keyframes subtleGlow {
+    0%, 100% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+@keyframes subtlePattern {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
 </style>
 <script>
 tailwind.config = {
@@ -103,58 +232,76 @@ DEFAULT: '8px',
 </nav>
 </header>
 <main class="pt-20">
-<section id="projects" class="bg-[#0D1117] py-20">
+<section id="projects" class="bg-[#0D1117] py-12">
 <div class="container mx-auto px-6">
 <div class="flex justify-between items-center mb-16">
 <h2 class="text-3xl font-bold">Projects</h2>
 <div class="relative">
-<select class="bg-[#0D1117] text-white px-4 py-2 rounded-lg appearance-none pr-8 cursor-pointer">
-<option>All Projects (8)</option>
-<option>Machine Learning</option>
-<option>NLP</option>
-<option>Computer Vision</option>
-<option>MLOps</option>
-</select>
-<i class="ri-arrow-down-s-line absolute right-2 top-1/2 -translate-y-1/2 text-white"></i>
+    <select id="categoryFilter" class="bg-[#1A1E23] text-white px-4 py-2 rounded-lg appearance-none pr-8 cursor-pointer">
+        <option value="all">All Categories</option>
+        <option value="Machine Learning">Machine Learning</option>
+        <option value="Natural Language Processing">NLP</option>
+        <option value="Computer Vision">Computer Vision</option>
+        <option value="Reinforcement Learning">Reinforcement Learning</option>
+        <option value="Deep Learning">Deep Learning</option>
+    </select>
+    <i class="ri-arrow-down-s-line absolute right-2 top-1/2 -translate-y-1/2 text-white pointer-events-none"></i>
 </div>
 </div>
 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8" id="projectsGrid">
-<div class="bg-[#0D1117] rounded-lg overflow-hidden group cursor-pointer project-item" onclick="showProjectDetails(1)">
-<div class="h-48 bg-gray-800 flex items-center justify-center">
-<img src="https://public.readdy.ai/ai/img_res/97d73600689cc411a29029f847650ea4.jpg" alt="Network Security Project" class="w-full h-full object-cover">
+<div class="bg-[#0D1117] rounded-lg overflow-hidden group cursor-pointer project-item relative" onclick="showProjectDetails(1)">
+    <div class="h-48 bg-gray-800 flex items-center justify-center relative">
+        <img src="https://public.readdy.ai/ai/img_res/97d73600689cc411a29029f847650ea4.jpg" alt="Network Security Project" class="w-full h-full object-cover">
+        <div class="project-overlay">
+            <span class="view-details">View Details</span>
+        </div>
+    </div>
+    <div class="p-4">
+        <h3 class="text-xl font-bold mb-2">Optimizing Network Security via Ensemble Learning</h3>
+        <p class="text-gray-400 text-sm">Machine Learning</p>
+    </div>
 </div>
-<div class="p-4">
-<h3 class="text-xl font-bold mb-2">Optimizing Network Security via Ensemble Learning</h3>
-<p class="text-gray-400 text-sm">Machine Learning</p>
+
+<div class="bg-[#0D1117] rounded-lg overflow-hidden group cursor-pointer project-item relative" onclick="showProjectDetails(2)">
+    <div class="h-48 bg-gray-800 flex items-center justify-center relative">
+        <img src="https://public.readdy.ai/ai/img_res/1ccdf032fb1b8ee964c5bb61c628b4b6.jpg" alt="Deepfake Detection" class="w-full h-full object-cover">
+        <div class="project-overlay">
+            <span class="view-details">View Details</span>
+        </div>
+    </div>
+    <div class="p-4">
+        <h3 class="text-xl font-bold mb-2">Deepfake Detection</h3>
+        <p class="text-gray-400 text-sm">Computer Vision</p>
+    </div>
 </div>
-</div>
-<div class="bg-[#0D1117] rounded-lg overflow-hidden group cursor-pointer" onclick="showProjectDetails(2)">
-<div class="h-48 bg-gray-800 flex items-center justify-center">
-<img src="https://public.readdy.ai/ai/img_res/1ccdf032fb1b8ee964c5bb61c628b4b6.jpg" alt="Deepfake Detection" class="w-full h-full object-cover">
-</div>
-<div class="p-4">
-<h3 class="text-xl font-bold mb-2">Deepfake Detection</h3>
-<p class="text-gray-400 text-sm">Computer Vision</p>
-</div>
-</div>
-<div class="bg-[#0D1117] rounded-lg overflow-hidden group cursor-pointer" onclick="showProjectDetails(3)">
-<div class="h-48 bg-gray-800 flex items-center justify-center">
-<img src="https://public.readdy.ai/ai/img_res/725a8a3de127e187ba1659343cf54c2d.jpg" alt="Prosense" class="w-full h-full object-cover">
-</div>
-<div class="p-4">
-<h3 class="text-xl font-bold mb-2">Prosense - LLM Defense</h3>
-<p class="text-gray-400 text-sm">Natural Language Processing</p>
-</div>
+
+<div class="bg-[#0D1117] rounded-lg overflow-hidden group cursor-pointer project-item relative" onclick="showProjectDetails(3)">
+    <div class="h-48 bg-gray-800 flex items-center justify-center relative">
+        <img src="https://public.readdy.ai/ai/img_res/725a8a3de127e187ba1659343cf54c2d.jpg" alt="Prosense" class="w-full h-full object-cover">
+        <div class="project-overlay">
+            <span class="view-details">View Details</span>
+        </div>
+    </div>
+    <div class="p-4">
+        <h3 class="text-xl font-bold mb-2">Prosense - LLM Defense</h3>
+        <p class="text-gray-400 text-sm">Natural Language Processing</p>
+    </div>
 </div>    
-<div class="bg-[#0D1117] rounded-lg overflow-hidden group cursor-pointer project-item" onclick="showProjectDetails(4)">
-<div class="h-48 bg-gray-800 flex items-center justify-center">
-<img src="https://public.readdy.ai/ai/img_res/84c9c7d43ca85617c49dbb0554400ab0.jpg" alt="AI Stock Market Prediction" class="w-full h-full object-cover">
-</div>
-<div class="p-4">
-<h3 class="text-xl font-bold mb-2">AI-Driven Stock Market Prediction with RL, LLMs & Multimodal Learning</h3>
-<p class="text-gray-400 text-sm">Reinforcement Learning & NLP</p>
-</div>
+
+<div class="bg-[#0D1117] rounded-lg overflow-hidden group cursor-pointer project-item relative" onclick="showProjectDetails(4)">
+    <div class="h-48 bg-gray-800 flex items-center justify-center relative">
+        <img src="https://public.readdy.ai/ai/img_res/84c9c7d43ca85617c49dbb0554400ab0.jpg" alt="AI Stock Market Prediction" class="w-full h-full object-cover">
+        <div class="project-overlay">
+            <span class="view-details">View Details</span>
+        </div>
+    </div>
+    <div class="p-4">
+        <h3 class="text-xl font-bold mb-2">AI-Driven Stock Market Prediction with RL, LLMs & Multimodal Learning</h3>
+        <p class="text-gray-400 text-sm">Reinforcement Learning & NLP</p>
+    </div>
 </div>    
+</div>
+
 <!-- Project Details Modal -->
 <div id="projectModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
 <div class="bg-[#0D1117] p-8 rounded-lg max-w-2xl w-full mx-4 relative">
@@ -165,209 +312,203 @@ DEFAULT: '8px',
 </div>
 </div>
 <script>
-const projectDetails = {
-8: {
-title: "Used Car Price Prediction",
-description: `
-<div class="space-y-4">
-<h2 class="text-2xl font-bold text-primary mb-4">Project Overview</h2>
-<div class="space-y-2">
-<p class="text-gray-300">• Developed Used Car Prediction application, employing Machine Learning Algorithms within Google Colab. Achieved error rate of 0.0021 utilizing Multiple Linear Regression to analyze and predict car prices based on customer-provided details.</p>
-<p class="text-gray-300">• Conducted comprehensive analysis by systematically comparing prediction errors across three prominent Machine Learning methods – Decision Tree, Random Forest, and Multiple Linear Regression. Curated the dataset from Kaggle website.</p>
+// Load all projects data upfront
+const allProjects = {
+    visible: [
+        {
+            id: 1,
+            title: "Optimizing Network Security via Ensemble Learning",
+            category: "Machine Learning",
+            image: "https://public.readdy.ai/ai/img_res/97d73600689cc411a29029f847650ea4.jpg"
+        },
+        {
+            id: 2,
+            title: "Deepfake Detection",
+            category: "Computer Vision",
+            image: "https://public.readdy.ai/ai/img_res/1ccdf032fb1b8ee964c5bb61c628b4b6.jpg"
+        },
+        {
+            id: 3,
+            title: "Prosense - LLM Defense",
+            category: "Natural Language Processing",
+            image: "https://public.readdy.ai/ai/img_res/725a8a3de127e187ba1659343cf54c2d.jpg"
+        },
+        {
+            id: 4,
+            title: "AI-Driven Stock Market Prediction with RL, LLMs & Multimodal Learning",
+            category: "Reinforcement Learning & NLP",
+            image: "https://public.readdy.ai/ai/img_res/84c9c7d43ca85617c49dbb0554400ab0.jpg"
+        }
+    ],
+    hidden: [
+        {
+            id: 7,
+            title: "Indian Sign Language Recognition",
+            category: "Computer Vision",
+            image: "https://public.readdy.ai/ai/img_res/62d9e7fcc4911cc9259240604cffe86f.jpg"
+        },
+        {
+            id: 6,
+            title: "Image Caption Generator",
+            category: "Computer Vision & NLP",
+            image: "https://public.readdy.ai/ai/img_res/ce4aabfbdfd58643f7f4d97beee11e79.jpg"
+        },
+        {
+            id: 5,
+            title: "Customer Churn Prediction Using MLP",
+            category: "Deep Learning",
+            image: "https://public.readdy.ai/ai/img_res/29000251120f4d1881619772205076a9.jpg"
+        },
+        {
+            id: 8,
+            title: "Used Car Price Prediction",
+            category: "Machine Learning",
+            image: "https://public.readdy.ai/ai/img_res/ec34e970a7a958ed747aa47d11ac7754.jpg"
+        }
+    ]
+};
+
+// Updated filtering functionality
+function filterProjects() {
+    const selectedCategory = document.getElementById('categoryFilter').value;
+    const projectsContainer = document.querySelector('.grid.md\\:grid-cols-2.lg\\:grid-cols-4');
+    const loadMoreButton = document.querySelector('[onclick="loadMoreProjects()"]');
+    
+    // Clear existing projects
+    projectsContainer.innerHTML = '';
+    
+    // Function to check if project matches category
+    function matchesCategory(category) {
+        if (selectedCategory === 'all') return true;
+
+        // Convert both the selected category and project category to lowercase for case-insensitive comparison
+        const selectedLower = selectedCategory.toLowerCase();
+        const categoryLower = category.toLowerCase();
+
+        // Handle NLP special case
+        if (selectedLower === 'nlp' || selectedLower === 'natural language processing') {
+            return categoryLower.includes('natural language processing') || 
+                   categoryLower.includes('nlp') ||
+                   categoryLower.includes('llm');
+        }
+
+        // Handle Reinforcement Learning special case
+        if (selectedLower === 'reinforcement learning') {
+            return categoryLower.includes('reinforcement learning') || 
+                   categoryLower.includes('rl');
+        }
+
+        // For other categories, split by & and check each part
+        const categoryParts = categoryLower.split('&').map(cat => cat.trim());
+        return categoryParts.some(cat => cat.includes(selectedLower));
+    }
+    
+    // Function to create project element
+    function createProjectElement(project) {
+        const element = document.createElement('div');
+        element.className = 'bg-[#0D1117] rounded-lg overflow-hidden group cursor-pointer project-item relative';
+        element.setAttribute('onclick', `showProjectDetails(${project.id})`);
+        element.innerHTML = `
+            <div class="h-48 bg-gray-800 flex items-center justify-center relative">
+                <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover">
+                <div class="project-overlay">
+                    <span class="view-details">View Details</span>
+                </div>
+            </div>
+            <div class="p-4">
+                <h3 class="text-xl font-bold mb-2">${project.title}</h3>
+                <p class="text-gray-400 text-sm">${project.category}</p>
+            </div>
+        `;
+        return element;
+    }
+
+    // Get all projects that match the selected category
+    const matchingVisibleProjects = allProjects.visible.filter(project => matchesCategory(project.category));
+    const matchingHiddenProjects = allProjects.hidden.filter(project => matchesCategory(project.category));
+    
+    // If a specific category is selected (not "all"), show all matching projects immediately
+    if (selectedCategory !== 'all') {
+        // Show all matching projects from both visible and hidden arrays
+        [...matchingVisibleProjects, ...matchingHiddenProjects].forEach(project => {
+            projectsContainer.appendChild(createProjectElement(project));
+        });
+        // Hide the Load More button since we're showing all matching projects
+        loadMoreButton.style.display = 'none';
+    } else {
+        // For "all" category, show visible projects and keep Load More functionality
+        matchingVisibleProjects.forEach(project => {
+            projectsContainer.appendChild(createProjectElement(project));
+        });
+        
+        if (isMoreProjectsLoaded) {
+            // If Load More was clicked, show all hidden projects too
+            matchingHiddenProjects.forEach(project => {
+                projectsContainer.appendChild(createProjectElement(project));
+            });
+            loadMoreButton.style.display = 'none';
+        } else {
+            // Show Load More button only if there are hidden projects
+            loadMoreButton.style.display = matchingHiddenProjects.length > 0 ? 'inline-block' : 'none';
+        }
+    }
+}
+
+// Updated Load More functionality
+let isMoreProjectsLoaded = false;
+function loadMoreProjects() {
+    if (!isMoreProjectsLoaded) {
+        isMoreProjectsLoaded = true;
+        filterProjects(); // Refilter to show all matching projects
+    }
+}
+
+// Initialize filtering when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    const categoryFilter = document.getElementById('categoryFilter');
+    categoryFilter.addEventListener('change', filterProjects);
+    filterProjects();
+});
+</script>
 </div>
 </div>
-`
-},
-7: {
-title: "Indian Sign Language Recognition",
-description: `
-<div class="space-y-4">
-<h2 class="text-2xl font-bold text-primary mb-4">Project Overview</h2>
-<div class="space-y-2">
-<p class="text-gray-300">• Developed a CNN for ISL alphabet recognition, achieving 98% accuracy. The architecture incorporated multi-layer convolutions and max pooling to refine feature detection, augmented by comprehensive image preprocessing and enhancement using OpenCV</p>
-<p class="text-gray-300">• Optimized the CNN with ReLU activations and Adam optimizer for efficient learning. Engineered a real-time translation interface that seamlessly links CNN processing to instantly display textual outputs.</p>
-<a href="https://github.com/AnuBaluguri/Indian-Sign-Language-Recognition" target="_blank" class="text-primary hover:underline flex items-center">
-<i class="ri-github-fill mr-2"></i>View on GitHub
 </div>
+<div class="text-center mt-12">
+<button onclick="loadMoreProjects()" class="bg-[#0D1117] text-white px-8 py-3 rounded-lg hover:bg-gray-800">
+Load More
+</button>
 </div>
-`
-},
-6: {
-title: "Image Caption Generator",
-description: `
-<div class="space-y-4">
-<h2 class="text-2xl font-bold text-primary mb-4">Project Overview</h2>
-<div class="space-y-2">
-<p class="text-gray-300">• Designed this system by leveraging Deep Learning Methodologies, specifically employing Convolutional Neural Networks (CNN) and Long Short-Term Memory (LSTM) techniques. Sourced and curated dataset from Kaggle to train the model effectively.</p>
-<p class="text-gray-300">• Demonstrated proficiency by achieving a BLEU Score of 0.57. This project underscores my expertise in applying advanced technologies to solve real-world challenges in computer vision and natural language processing.</p>
-</div>
-</div>
-`
-},
-5: {
-title: "Customer Churn Prediction Using MLP",
-description: `
-<div class="space-y-4">
-<h2 class="text-2xl font-bold text-primary mb-4">Project Overview</h2>
-<div class="space-y-2">
-<p class="text-gray-300">• Engineered a robust churn prediction model using Tensorflow and Keras, featuring a Multilayer Perceptron (MLP) optimized for high stake scenarios. Achieved a test accuracy of 86.7% through strategic hyperparameter tuning and training with Adam optimizer</p>
-<p class="text-gray-300">• Utilized Python’s Pandas and Seaborn for data preprocessing and exploratory analysis, effectively identifying significant correlations and selecting features with the highest impact on churn.</p>
-<a href="https://github.com/AnuBaluguri/Churn-Prediction" target="_blank" class="text-primary hover:underline flex items-center">
-<i class="ri-github-fill mr-2"></i>View on GitHub
-</div>
-</div>
-`
-},
-4: {
-title: "AI-Driven Stock Market Prediction with RL, LLMs & Multimodal Learning",
-description: `
-<div class="space-y-4">
-<h2 class="text-2xl font-bold text-primary mb-4">Project Overview</h2>
-<div class="space-y-2">
-<p class="text-gray-300">• Engineered a multimodal AI-driven trading system, integrating time-series forecasting, sentiment-aware NLP models (Mistral 7B/Llama 2 7B), and visual pattern recognition, enabling holistic market analysis and adaptive decision-making.</p>
-<p class="text-gray-300">• Explored Temporal Fusion Transformer (TFT) and reinforcement learning paradigms (PPO, SAC) to dynamically optimize trading strategies, leveraging real-time market volatility and policy-gradient-based portfolio rebalancing.</p>
-<p class="text-gray-300">• Built a low-latency inference and execution pipeline using FastAPI and Ollama, optimizing on-device and distributed inference for real-time trade execution, ensuring high-throughput, low-latency market response under fluctuating conditions.</p>
-<div class="mt-4">
-<a href="https://github.com/AnuBaluguri/AI-Stock-Trading" target="_blank" class="text-primary hover:underline flex items-center">
-<i class="ri-github-fill mr-2"></i>View on GitHub
-</a>
-</div>
-</div>
-</div>
-`
-},
-1: {
-title: "Optimizing Network Security via Ensemble Learning",
-description: `
-<div class="space-y-4">
-<h2 class="text-2xl font-bold text-primary mb-4">Project Overview</h2>
-<div class="space-y-2">
-<p class="text-gray-300">• Designed a hybrid stacked ensemble for intrusion detection, integrating Decision Trees, KNN, MLP, and Naïve Bayes, with a Logistic Regression meta-learner optimizing feature-space interactions for enhanced anomaly detection.</p>
-<p class="text-gray-300">• Applied feature engineering techniques, including Principal Component Analysis (PCA) for dimensionality reduction, enhancing feature extraction and improving model efficiency while leveraging Bayesian hyperparameter tuning and adaptive ensemble weighting for predictive stability.</p>
-<p class="text-gray-300">• Published research paper in the Journal of Information Security, detailing the methodology and results of our novel ensemble approach.</p>
-<div class="mt-4">
-<a href="https://www.scirp.org/journal/paperinformation?paperid=136719" target="_blank" class="text-primary hover:underline flex items-center">
-<i class="ri-file-paper-2-line mr-2"></i>View Publication
-</a>
-<a href="https://github.com/AnuBaluguri/Optimizing-Network-Security-via-Ensemble-Learning" target="_blank" class="text-primary hover:underline flex items-center">
-<i class="ri-github-fill mr-2"></i>View on GitHub
-</a>
-</div>
-</div>
-</div>
-`
-},
-2: {
-title: "Deepfake Detection",
-description: `
-<div class="space-y-4">
-<h2 class="text-2xl font-bold text-primary mb-4">Project Overview</h2>
-<div class="space-y-2">
-<p class="text-gray-300">• Architected a Deepfake detection pipeline using XceptionNet, TensorFlow optimization, and fine-tuning on ImageNet embeddings for improved feature extraction.</p>
-<p class="text-gray-300">• Applied feature engineering and data preprocessing with data augmentation and noise reduction to improve model robustness.</p>
-<p class="text-gray-300">• Devised a CNN-LSTM architecture for spatiotemporal anomaly detection, integrating OpenCV-based dynamic frame parsing with sequential modeling to capture motion inconsistencies, reinforcing robustness against evolving generative AI threats.</p>
-<div class="mt-4">
-<a href="https://github.com/AnuBaluguri/Deepfake-Detection" target="_blank" class="text-primary hover:underline flex items-center">
-<i class="ri-github-fill mr-2"></i>View on GitHub
-</a>
-</div>
-</div>
-</div>
-`
-},
-3: {
-title: "Prosense - Defending Text Generating LLM's",
-description: `
-<div class="space-y-4">
-<h2 class="text-2xl font-bold text-primary mb-4">Project Overview</h2>
-<div class="space-y-2">
-<p class="text-gray-300">• Architected a reinforcement learning-driven adversarial defense framework with dynamic threat detection and mitigating prompt injections, stealth perturbations, and gradient-based exploits while preserving generative integrity.</p>
-<p class="text-gray-300">• Engineered a meta-learning resilience pipeline by integrating contrastive adversarial training, uncertainty quantification, and self-correcting logical constraints, enhancing interpretability and fortifying robustness against evolving adversarial strategies.
-</p>
-<p class="text-gray-300">• Developed a transformer-based perturbation module with iterative feedback loops, contextual anomaly detection, leveraging gradient-aware robustness and Hugging Face LLM validation to enhance security without compromising performance</p>
-</div>
-</div>
- `
- }
- };
- function showProjectDetails(projectId) {
- const modal = document.getElementById('projectModal');
- const content = document.getElementById('projectContent');
- content.innerHTML = projectDetails[projectId].description;
- modal.classList.remove('hidden');
- modal.classList.add('flex');
- document.body.style.overflow = 'hidden';
- }
- function closeProjectModal() {
- const modal = document.getElementById('projectModal');
- modal.classList.add('hidden');
- modal.classList.remove('flex');
- document.body.style.overflow = 'auto';
- }
- // Close modal when clicking outside
- document.getElementById('projectModal').addEventListener('click', function(e) {
- if (e.target === this) {
- closeProjectModal();
- }
- });
- </script>
- </div>
- </div>
- </div>
- <div class="text-center mt-12">
- <button onclick="loadMoreProjects()" class="bg-[#0D1117] text-white px-8 py-3 rounded-lg hover:bg-gray-800">
- Load More
- </button>
- <script>
- let isMoreProjectsLoaded = false;
- function loadMoreProjects() {
- if (!isMoreProjectsLoaded) {
- const projectsContainer = document.querySelector('.grid.md\\:grid-cols-2.lg\\:grid-cols-4');
- const newProjects = [
- {
- id: 7,
- title: "Indian Sign Language Recognition",
- category: "Computer Vision",
- image: "https://public.readdy.ai/ai/img_res/62d9e7fcc4911cc9259240604cffe86f.jpg",
- onClick: () => showProjectDetails(7)
- },
- {
- id: 6,
- title: "Image Caption Generator",
- category: "Computer Vision & NLP",
- image: "https://public.readdy.ai/ai/img_res/ce4aabfbdfd58643f7f4d97beee11e79.jpg"
- },
- {
- id : 5, 
- title: "Customer Churn Prediction Using MLP",
- category: "Deep Learning",
- image: "https://public.readdy.ai/ai/img_res/29000251120f4d1881619772205076a9.jpg"
- },
- {
- id : 8,
- title: "Used Car Price Prediction",
- category: "Machine Learning",
- image: "https://public.readdy.ai/ai/img_res/ec34e970a7a958ed747aa47d11ac7754.jpg"
- }
- ];
- newProjects.forEach((project, index) => {
- const projectElement = document.createElement('div');
- projectElement.className = 'bg-[#0D1117] rounded-lg overflow-hidden group cursor-pointer';
- projectElement.setAttribute('onclick', `showProjectDetails(${project.id})`);
- projectElement.innerHTML = `
- <div class="h-48 bg-gray-800 flex items-center justify-center">
- <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover">
- </div>
- <div class="p-4">
- <h3 class="text-xl font-bold mb-2">${project.title}</h3>
- <p class="text-gray-400 text-sm">${project.category}</p>
- </div>
- `;
- projectsContainer.appendChild(projectElement);
- });
- isMoreProjectsLoaded = true;
- document.querySelector('[onclick="loadMoreProjects()"]').style.display = 'none';
- }
- }
- </script>
- </section>
+<script>
+document.querySelector('.md\\:hidden').addEventListener('click', function() {
+const nav = document.querySelector('.md\\:flex');
+nav.classList.toggle('hidden');
+nav.classList.toggle('flex');
+nav.classList.toggle('flex-col');
+nav.classList.toggle('absolute');
+nav.classList.toggle('top-16');
+nav.classList.toggle('left-0');
+nav.classList.toggle('w-full');
+nav.classList.toggle('bg-[#0D1117]');
+nav.classList.toggle('p-4');
+});
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function (e) {
+e.preventDefault();
+const targetId = this.getAttribute('href');
+const targetElement = document.querySelector(targetId);
+if (targetElement) {
+const headerOffset = 80;
+const elementPosition = targetElement.getBoundingClientRect().top;
+const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+window.scrollTo({
+top: offsetPosition,
+behavior: 'smooth'
+});
+}
+});
+});
+</script>
+<script src="transition.js"></script>
+</main>
+</body>
+</html>
