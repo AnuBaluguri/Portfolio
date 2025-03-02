@@ -303,13 +303,19 @@ DEFAULT: '8px',
 </div>
 
 <!-- Project Details Modal -->
-<div id="projectModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
-<div class="bg-[#0D1117] p-8 rounded-lg max-w-2xl w-full mx-4 relative">
-<button onclick="closeProjectModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white">
-<i class="ri-close-line text-2xl"></i>
-</button>
-<div id="projectContent"></div>
-</div>
+<div id="projectModal" class="fixed inset-0 z-50 hidden" style="display: none;">
+    <!-- Backdrop overlay -->
+    <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+    <!-- Modal container with scrollable content -->
+    <div class="absolute inset-0 flex items-center justify-center p-4 overflow-y-auto">
+        <!-- Actual modal content -->
+        <div class="bg-[#0D1117] p-8 rounded-lg w-full max-w-2xl relative">
+            <button onclick="closeProjectModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white">
+                <i class="ri-close-line text-2xl"></i>
+            </button>
+            <div id="projectContent" class="pr-4"></div>
+        </div>
+    </div>
 </div>
 <script>
 // Load all projects data upfront
@@ -367,7 +373,131 @@ const allProjects = {
         }
     ]
 };
-
+const projectDetails = {
+8: {
+title: "Used Car Price Prediction",
+description: `
+<div class="space-y-4">
+<h2 class="text-2xl font-bold text-primary mb-4">Project Overview</h2>
+<div class="space-y-2">
+<p class="text-gray-300">• Developed Used Car Prediction application, employing Machine Learning Algorithms within Google Colab. Achieved error rate of 0.0021 utilizing Multiple Linear Regression to analyze and predict car prices based on customer-provided details.</p>
+<p class="text-gray-300">• Conducted comprehensive analysis by systematically comparing prediction errors across three prominent Machine Learning methods – Decision Tree, Random Forest, and Multiple Linear Regression. Curated the dataset from Kaggle website.</p>
+</div>
+</div>
+`
+},
+7: {
+title: "Indian Sign Language Recognition",
+description: `
+<div class="space-y-4">
+<h2 class="text-2xl font-bold text-primary mb-4">Project Overview</h2>
+<div class="space-y-2">
+<p class="text-gray-300">• Developed a CNN for ISL alphabet recognition, achieving 98% accuracy. The architecture incorporated multi-layer convolutions and max pooling to refine feature detection, augmented by comprehensive image preprocessing and enhancement using OpenCV</p>
+<p class="text-gray-300">• Optimized the CNN with ReLU activations and Adam optimizer for efficient learning. Engineered a real-time translation interface that seamlessly links CNN processing to instantly display textual outputs.</p>
+<a href="https://github.com/AnuBaluguri/Indian-Sign-Language-Recognition" target="_blank" class="text-primary hover:underline flex items-center">
+<i class="ri-github-fill mr-2"></i>View on GitHub
+</div>
+</div>
+`
+},
+6: {
+title: "Image Caption Generator",
+description: `
+<div class="space-y-4">
+<h2 class="text-2xl font-bold text-primary mb-4">Project Overview</h2>
+<div class="space-y-2">
+<p class="text-gray-300">• Designed this system by leveraging Deep Learning Methodologies, specifically employing Convolutional Neural Networks (CNN) and Long Short-Term Memory (LSTM) techniques. Sourced and curated dataset from Kaggle to train the model effectively.</p>
+<p class="text-gray-300">• Demonstrated proficiency by achieving a BLEU Score of 0.57. This project underscores my expertise in applying advanced technologies to solve real-world challenges in computer vision and natural language processing.</p>
+</div>
+</div>
+`
+},
+5: {
+title: "Customer Churn Prediction Using MLP",
+description: `
+<div class="space-y-4">
+<h2 class="text-2xl font-bold text-primary mb-4">Project Overview</h2>
+<div class="space-y-2">
+<p class="text-gray-300">• Engineered a robust churn prediction model using Tensorflow and Keras, featuring a Multilayer Perceptron (MLP) optimized for high stake scenarios. Achieved a test accuracy of 86.7% through strategic hyperparameter tuning and training with Adam optimizer</p>
+<p class="text-gray-300">• Utilized Python's Pandas and Seaborn for data preprocessing and exploratory analysis, effectively identifying significant correlations and selecting features with the highest impact on churn.</p>
+<a href="https://github.com/AnuBaluguri/Churn-Prediction" target="_blank" class="text-primary hover:underline flex items-center">
+<i class="ri-github-fill mr-2"></i>View on GitHub
+</div>
+</div>
+`
+},
+4: {
+title: "AI-Driven Stock Market Prediction with RL, LLMs & Multimodal Learning",
+description: `
+<div class="space-y-4">
+<h2 class="text-2xl font-bold text-primary mb-4">Project Overview</h2>
+<div class="space-y-2">
+<p class="text-gray-300">• Engineered a multimodal AI-driven trading system, integrating time-series forecasting, sentiment-aware NLP models (Mistral 7B/Llama 2 7B), and visual pattern recognition, enabling holistic market analysis and adaptive decision-making.</p>
+<p class="text-gray-300">• Explored Temporal Fusion Transformer (TFT) and reinforcement learning paradigms (PPO, SAC) to dynamically optimize trading strategies, leveraging real-time market volatility and policy-gradient-based portfolio rebalancing.</p>
+<p class="text-gray-300">• Built a low-latency inference and execution pipeline using FastAPI and Ollama, optimizing on-device and distributed inference for real-time trade execution, ensuring high-throughput, low-latency market response under fluctuating conditions.</p>
+<div class="mt-4">
+<a href="https://github.com/AnuBaluguri/AI-Stock-Trading" target="_blank" class="text-primary hover:underline flex items-center">
+<i class="ri-github-fill mr-2"></i>View on GitHub
+</a>
+</div>
+</div>
+</div>
+`
+},
+1: {
+title: "Optimizing Network Security via Ensemble Learning",
+description: `
+<div class="space-y-4">
+<h2 class="text-2xl font-bold text-primary mb-4">Project Overview</h2>
+<div class="space-y-2">
+<p class="text-gray-300">• Designed a hybrid stacked ensemble for intrusion detection, integrating Decision Trees, KNN, MLP, and Naïve Bayes, with a Logistic Regression meta-learner optimizing feature-space interactions for enhanced anomaly detection.</p>
+<p class="text-gray-300">• Applied feature engineering techniques, including Principal Component Analysis (PCA) for dimensionality reduction, enhancing feature extraction and improving model efficiency while leveraging Bayesian hyperparameter tuning and adaptive ensemble weighting for predictive stability.</p>
+<p class="text-gray-300">• Published research paper in the Journal of Information Security, detailing the methodology and results of our novel ensemble approach.</p>
+<div class="mt-4">
+<a href="https://www.scirp.org/journal/paperinformation?paperid=136719" target="_blank" class="text-primary hover:underline flex items-center">
+<i class="ri-file-paper-2-line mr-2"></i>View Publication
+</a>
+<a href="https://github.com/AnuBaluguri/Optimizing-Network-Security-via-Ensemble-Learning" target="_blank" class="text-primary hover:underline flex items-center">
+<i class="ri-github-fill mr-2"></i>View on GitHub
+</a>
+</div>
+</div>
+</div>
+`
+},
+2: {
+title: "Deepfake Detection",
+description: `
+<div class="space-y-4">
+<h2 class="text-2xl font-bold text-primary mb-4">Project Overview</h2>
+<div class="space-y-2">
+<p class="text-gray-300">• Architected a Deepfake detection pipeline using XceptionNet, TensorFlow optimization, and fine-tuning on ImageNet embeddings for improved feature extraction.</p>
+<p class="text-gray-300">• Applied feature engineering and data preprocessing with data augmentation and noise reduction to improve model robustness.</p>
+<p class="text-gray-300">• Devised a CNN-LSTM architecture for spatiotemporal anomaly detection, integrating OpenCV-based dynamic frame parsing with sequential modeling to capture motion inconsistencies, reinforcing robustness against evolving generative AI threats.</p>
+<div class="mt-4">
+<a href="https://github.com/AnuBaluguri/Deepfake-Detection" target="_blank" class="text-primary hover:underline flex items-center">
+<i class="ri-github-fill mr-2"></i>View on GitHub
+</a>
+</div>
+</div>
+</div>
+`
+},
+3: {
+title: "Prosense - Defending Text Generating LLM's",
+description: `
+<div class="space-y-4">
+<h2 class="text-2xl font-bold text-primary mb-4">Project Overview</h2>
+<div class="space-y-2">
+<p class="text-gray-300">• Architected a reinforcement learning-driven adversarial defense framework with dynamic threat detection and mitigating prompt injections, stealth perturbations, and gradient-based exploits while preserving generative integrity.</p>
+<p class="text-gray-300">• Engineered a meta-learning resilience pipeline by integrating contrastive adversarial training, uncertainty quantification, and self-correcting logical constraints, enhancing interpretability and fortifying robustness against evolving adversarial strategies.
+</p>
+<p class="text-gray-300">• Developed a transformer-based perturbation module with iterative feedback loops, contextual anomaly detection, leveraging gradient-aware robustness and Hugging Face LLM validation to enhance security without compromising performance</p>
+</div>
+</div>
+`
+}
+};
 // Updated filtering functionality
 function filterProjects() {
     const selectedCategory = document.getElementById('categoryFilter').value;
@@ -473,11 +603,35 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 </div>
 </div>
+<script>
+function showProjectDetails(projectId) {
+    const modal = document.getElementById('projectModal');
+    const content = document.getElementById('projectContent');
+    content.innerHTML = projectDetails[projectId].description;
+    
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+}
+
+function closeProjectModal() {
+    const modal = document.getElementById('projectModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+// Close modal when clicking outside
+document.getElementById('projectModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeProjectModal();
+    }
+});
+</script>
 <div class="text-center mt-12">
 <button onclick="loadMoreProjects()" class="bg-[#0D1117] text-white px-8 py-3 rounded-lg hover:bg-gray-800">
 Load More
 </button>
 </div>
+</main>
 <script>
 document.querySelector('.md\\:hidden').addEventListener('click', function() {
 const nav = document.querySelector('.md\\:flex');
@@ -509,6 +663,5 @@ behavior: 'smooth'
 });
 </script>
 <script src="transition.js"></script>
-</main>
 </body>
 </html>
