@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anu Baluguri - Portfolio</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+<link href="transition.css" rel="stylesheet">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+:root {
+--neon-green: #00FF9D;
+--dark-bg: #0D1117;
+--transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+body {
+background-color: var(--dark-bg);
+color: white;
+min-height: 100vh;
+}
+.neon-border {
+position: relative;
+}
+.neon-border::after {
+content: '';
+position: absolute;
+top: -2px;
+left: -2px;
+right: -2px;
+bottom: -2px;
+border: 2px solid var(--neon-green);
+border-radius: inherit;
+opacity: 0.5;
+pointer-events: none;
+}
+.hexagon {
+clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+.nav-link {
+position: relative;
+}
+.nav-link::after {
+content: '';
+position: absolute;
+width: 0;
+height: 2px;
+bottom: -4px;
+left: 0;
+background-color: var(--neon-green);
+transition: width 0.3s ease;
+}
+.nav-link:hover::after {
+width: 100%;
+}
+.service-card {
+transition: transform 0.3s ease;
+}
+.service-card:hover {
+transform: translateY(-10px);
+}
+
+/* Certificate Card Animations */
+.cert-card {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s var(--transition-smooth);
+}
+
+.cert-card.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.cert-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 255, 157, 0.1);
+}
+
+.cert-card .cert-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.cert-card .cert-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    transform: skewX(-25deg);
+    transition: all 0.75s ease;
+}
+
+.cert-card:hover .cert-image::after {
+    animation: shine 1.5s infinite;
+}
+
+@keyframes shine {
+    100% {
+        left: 200%;
+    }
+}
+
+/* Dynamic Background */
+.bg-[#0D1117] {
+    background: var(--dark-bg);
+}
+
+#certifications {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    background: var(--dark-bg);
+}
+
+#certifications::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+        linear-gradient(135deg, rgba(0, 255, 157, 0.02) 0%, transparent 50%),
+        linear-gradient(225deg, rgba(0, 255, 157, 0.02) 0%, transparent 50%),
+        radial-gradient(circle at center, rgba(0, 255, 157, 0.03) 0%, transparent 60%);
+    z-index: -1;
+    animation: certGlow 15s ease infinite;
+    pointer-events: none;
+    mix-blend-mode: screen;
+}
+
+#certifications::after {
+    content: '';
+    position: absolute;
+    inset: -50%;
+    background: 
+        conic-gradient(from 0deg at 50% 50%,
+            rgba(0, 255, 157, 0.02) 0deg,
+            rgba(0, 255, 157, 0.03) 180deg,
+            rgba(0, 255, 157, 0.02) 360deg);
+    animation: slowRotate 30s linear infinite;
+    z-index: -2;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    opacity: 0.5;
+}
+
+@keyframes certGlow {
+    0%, 100% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.02);
+    }
+}
+
+@keyframes slowRotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+</style>
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#00FF9D',
+secondary: '#1A1E23'
+},
+borderRadius: {
+'none': '0px',
+'sm': '4px',
+DEFAULT: '8px',
+'md': '12px',
+'lg': '16px',
+'xl': '20px',
+'2xl': '24px',
+'3xl': '32px',
+'full': '9999px',
+'button': '8px'
+}
+}
+}
+}
+</script>
+</head>
+<body class="font-sans">
+    <div class="page-transition"></div>
+    <header class="fixed w-full top-0 z-50 bg-[#0D1117] border-b border-gray-800">
+    <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+    <a href="index.html" class="text-3xl font-['Pacifico'] text-primary">AB</a>
+    <div class="hidden md:flex space-x-8">
+    <a href="index.html" class="nav-link text-white hover:text-primary">HOME</a>
+    <a href="about.html" class="nav-link text-white hover:text-primary">ABOUT</a>
+    <a href="projects.html" class="nav-link text-white hover:text-primary">PROJECTS</a>
+    <a href="education.html" class="nav-link text-white hover:text-primary">EDUCATION</a>
+    <a href="certifications.html" class="nav-link text-white hover:text-primary">CERTIFICATIONS</a>
+    <a href="contact.html" class="nav-link text-white hover:text-primary">CONTACT</a>
+    </div>
+    <button class="md:hidden text-white focus:outline-none">
+    <i class="ri-menu-line text-2xl"></i>
+    </button>
+    </nav>
+    </header>
+    <main class="pt-20">
+        <section id="certifications" class="bg-[#0D1117] py-12">
+            <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">Certifications & Achievements</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-6 gap-8">
+            <!-- Machine Learning Specialization (moved to the top) -->
+            <a href="https://coursera.org/share/4816c573161278ba59f125b0d722b5f0" target="_blank" class="bg-secondary rounded-lg p-6 hover:scale-105 transition-transform duration-300">
+            <div class="h-48 mb-6 rounded-lg overflow-hidden">
+            <img src="https://public.readdy.ai/ai/img_res/7502515b7d6832377e785482446d4fc1.jpg"
+            alt="Machine Learning Certification"
+            class="w-full h-full object-cover">
+            </div>
+            <h3 class="text-xl font-bold mb-3">Machine Learning</h3>
+            <p class="text-gray-400 mb-4">Completed machine learning specialization with DeepLearning.AI</p>
+            <div class="flex items-center text-primary">
+            <i class="ri-medal-line mr-2"></i>
+            <span>DeepLearning.AI</span>
+            </div>
+            </a>  
+            <!-- Azure AI fundamentals (moved to second) -->
+            <a href="https://www.credly.com/badges/021bc41a-bdd5-4fe7-81f4-5dd0c15d96d8" target="_blank" class="bg-secondary rounded-lg p-6 hover:scale-105 transition-transform duration-300">
+            <div class="h-48 mb-6 rounded-lg overflow-hidden">
+            <img src="https://public.readdy.ai/ai/img_res/a3b59ff57ade6df4d467623646d33a27.jpg"
+            alt="Azure Certification"
+            class="w-full h-full object-cover">
+            </div>
+            <h3 class="text-xl font-bold mb-3">Azure AI Fundamentals</h3>
+            <p class="text-gray-400 mb-4">Microsoft Certified in Azure AI fundamentals and applications</p>
+            <div class="flex items-center text-primary">
+            <i class="ri-microsoft-fill mr-2"></i>
+            <span>Microsoft</span>
+            </div>
+            </a>  
+            <!-- Problem Solving Basic (moved to third) -->
+            <a href="https://www.hackerrank.com/certificates/19a0084ab01d" target="_blank" class="bg-secondary rounded-lg p-6 hover:scale-105 transition-transform duration-300">
+            <div class="h-48 mb-6 rounded-lg overflow-hidden">
+            <img src="https://public.readdy.ai/ai/img_res/aaebecbfd46470186b1462de83052346.jpg"
+            alt="HackerRank Certification"
+            class="w-full h-full object-cover">
+            </div>
+            <h3 class="text-xl font-bold mb-3">Problem Solving Basic</h3>
+            <p class="text-gray-400 mb-4">HackerRank certification in problem-solving fundamentals</p>
+            <div class="flex items-center text-primary">
+            <i class="ri-code-line mr-2"></i>
+            <span>HackerRank</span>
+            </div>
+            </a>  
+            <!-- Soft Skills Development (moved to fourth) -->
+            <a href="https://archive.nptel.ac.in/noc/Ecertificate/?q=NPTEL19HS32S523600061e6e43e11e9b41c298d316d753d" target="_blank" class="bg-secondary rounded-lg p-6 hover:scale-105 transition-transform duration-300">
+            <div class="h-48 mb-6 rounded-lg overflow-hidden">
+            <img src="https://public.readdy.ai/ai/img_res/0174a4ab22c3cc6c6ded17dbf93281d1.jpg"
+            alt="NPTEL Certification"
+            class="w-full h-full object-cover">
+            </div>
+            <h3 class="text-xl font-bold mb-3">Soft Skills Development</h3>
+            <p class="text-gray-400 mb-4">NPTEL certification in soft skills and personality development</p>
+            <div class="flex items-center text-primary">
+            <i class="ri-user-star-line mr-2"></i>
+            <span>NPTEL</span>
+            </div>
+            </a>  
+            <!-- Python Gold Badge (moved to fifth) -->
+            <div class="bg-secondary rounded-lg p-6 hover:scale-105 transition-transform duration-300">
+            <div class="h-48 mb-6 rounded-lg overflow-hidden">
+            <img src="https://public.readdy.ai/ai/img_res/01b5ede09a66891725808df05f437d6d.jpg"
+            alt="HackerRank Python"
+            class="w-full h-full object-cover">
+            </div>
+            <h3 class="text-xl font-bold mb-3">Python Gold Badge</h3>
+            <p class="text-gray-400 mb-4">Achieved Gold Level Badge in Python Programming on HackerRank</p>
+            <div class="flex items-center text-primary">
+            <i class="ri-code-line mr-2"></i>
+            <span>HackerRank</span>
+            </div>
+            </div>  
+            <!-- IEEE Coding Contest (moved to last) -->
+            <div class="bg-secondary rounded-lg p-6 hover:scale-105 transition-transform duration-300">
+            <div class="h-48 mb-6 rounded-lg overflow-hidden">
+            <img src="https://public.readdy.ai/ai/img_res/350cdc11ae0c49d164ca8f4190a8431c.jpg"
+            alt="IEEE Coding Contest"
+            class="w-full h-full object-cover">
+            </div>
+            <h3 class="text-xl font-bold mb-3">IEEE Coding Contest</h3>
+            <p class="text-gray-400 mb-4">Secured 3rd position among all college students at SR Engineering College</p>
+            <div class="flex items-center text-primary">
+            <i class="ri-trophy-line mr-2"></i>
+            <span>IEEE</span>
+            </div>
+            </div>
+            </div> 
+        </section>
+    </main>
+    <script src="transition.js"></script>
+</body>
+</html> 

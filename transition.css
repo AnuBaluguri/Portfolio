@@ -1,0 +1,212 @@
+/* Modern Minimal Transition */
+.page-transition {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--dark-bg);
+    z-index: 9999;
+    transform-origin: right;
+    transform: scaleX(0);
+    pointer-events: none;
+}
+
+.page-transition.is-active {
+    animation: revealContent 1.2s var(--ease-out-expo) forwards;
+}
+
+@keyframes revealContent {
+    0% {
+        transform: scaleX(0);
+    }
+    30% {
+        transform: scaleX(1);
+    }
+    70% {
+        transform: scaleX(1);
+    }
+    100% {
+        transform: scaleX(0);
+        transform-origin: left;
+    }
+}
+
+/* Progress Indicator */
+.progress-indicator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 1px;
+    width: 100%;
+    transform: scaleX(0);
+    transform-origin: left;
+    background: var(--neon-green);
+    z-index: 10000;
+    opacity: 0;
+    transition: transform 0.4s var(--ease-out-expo),
+                opacity 0.3s ease;
+}
+
+.progress-indicator.is-active {
+    opacity: 1;
+    transform: scaleX(1);
+}
+
+/* Content Animation */
+main {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease,
+                transform 0.6s var(--ease-out-expo);
+}
+
+main.is-exiting {
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+main.is-entering {
+    opacity: 0;
+    transform: translateY(-40px);
+}
+
+/* Custom Easing */
+:root {
+    --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+    --transition-duration: 0.8s;
+}
+
+/* Modern Page Transition */
+.transition-grid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    pointer-events: none;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.transition-grid.is-active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.grid-item {
+    background: var(--dark-bg);
+    transform: scaleY(0);
+    transform-origin: top;
+}
+
+.transition-grid.is-active .grid-item {
+    animation: revealDown 0.5s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+}
+
+.transition-grid.is-active .grid-item:nth-child(2) { animation-delay: 0.1s; }
+.transition-grid.is-active .grid-item:nth-child(3) { animation-delay: 0.2s; }
+.transition-grid.is-active .grid-item:nth-child(4) { animation-delay: 0.3s; }
+.transition-grid.is-active .grid-item:nth-child(5) { animation-delay: 0.4s; }
+
+@keyframes revealDown {
+    0% {
+        transform: scaleY(0);
+    }
+    100% {
+        transform: scaleY(1);
+    }
+}
+
+/* Accent Lines */
+.accent-line {
+    position: fixed;
+    background: var(--neon-green);
+    opacity: 0;
+    z-index: 10000;
+}
+
+.accent-line-h {
+    height: 1px;
+    width: 0;
+    transition: width 0.3s cubic-bezier(0.7, 0, 0.3, 1),
+                opacity 0.3s cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.accent-line-v {
+    width: 1px;
+    height: 0;
+    transition: height 0.3s cubic-bezier(0.7, 0, 0.3, 1),
+                opacity 0.3s cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.accent-line.is-active {
+    opacity: 0.5;
+}
+
+.accent-line-h.is-active {
+    width: 100%;
+}
+
+.accent-line-v.is-active {
+    height: 100%;
+}
+
+/* Progress Line */
+.progress-line {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--neon-green);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--transition-duration) var(--ease-out-expo);
+    z-index: 10000;
+}
+
+.progress-line.is-active {
+    transform: scaleX(1);
+}
+
+/* Page Overlay */
+.page-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(10, 10, 10, 0.95);
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.page-overlay.is-active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Content Transitions */
+main {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease,
+                transform 0.5s var(--ease-out-expo);
+}
+
+main.is-exiting {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+main.is-entering {
+    opacity: 0;
+    transform: translateY(-20px);
+} 

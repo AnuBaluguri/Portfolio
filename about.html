@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anu Baluguri - About</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+<link href="transition.css" rel="stylesheet">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+:root {
+--neon-green: #00FF9D;
+--dark-bg: #0D1117;
+}
+body {
+background-color: var(--dark-bg);
+color: white;
+min-height: 100vh;
+}
+.neon-border {
+position: relative;
+}
+.neon-border::after {
+content: '';
+position: absolute;
+top: -2px;
+left: -2px;
+right: -2px;
+bottom: -2px;
+border: 2px solid var(--neon-green);
+border-radius: inherit;
+opacity: 0.5;
+pointer-events: none;
+}
+.hexagon {
+clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+.nav-link {
+position: relative;
+}
+.nav-link::after {
+content: '';
+position: absolute;
+width: 0;
+height: 2px;
+bottom: -4px;
+left: 0;
+background-color: var(--neon-green);
+transition: width 0.3s ease;
+}
+.nav-link:hover::after {
+width: 100%;
+}
+.social-link {
+    position: relative;
+    transition: all 0.3s ease;
+}
+.social-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--neon-green);
+    transition: width 0.3s ease;
+}
+.social-link:hover::after {
+    width: 100%;
+}
+.social-link:hover {
+    transform: translateY(-2px);
+}
+.service-card {
+transition: transform 0.3s ease;
+}
+.service-card:hover {
+transform: translateY(-10px);
+}
+.skill-card {
+background: rgba(26, 30, 35, 0.7);
+border: 1px solid rgba(0, 255, 157, 0.1);
+backdrop-filter: blur(10px);
+transition: all 0.3s ease;
+}
+.skill-card:hover {
+transform: translateY(-5px);
+border-color: var(--neon-green);
+box-shadow: 0 5px 15px rgba(0, 255, 157, 0.2);
+}
+.skill-icon {
+color: var(--neon-green);
+font-size: 2rem;
+margin-bottom: 1rem;
+}
+.progress-bar {
+height: 4px;
+background: rgba(255, 255, 255, 0.1);
+border-radius: 2px;
+overflow: hidden;
+}
+.progress-fill {
+height: 100%;
+background: var(--neon-green);
+transition: width 1s ease;
+}
+.hexagon-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+gap: 1rem;
+padding: 0.5rem;
+max-width: 600px;
+margin: 0 auto;
+}
+.hexagon {
+position: relative;
+width: 100%;
+padding-bottom: 115%;
+clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+background: linear-gradient(145deg, #1A1E23, #0D1117);
+transition: all 0.3s ease;
+font-size: 0.875rem;
+}
+.hexagon:hover {
+transform: scale(1.05);
+background: var(--neon-green);
+}
+.hexagon-content {
+position: absolute;
+inset: 0;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+padding: 0.75rem;
+}
+.hexagon-content i {
+font-size: 1.5rem;
+margin-bottom: 0.5rem;
+}
+.about-section {
+position: relative;
+overflow: hidden;
+}
+.about-section::before {
+content: '';
+position: absolute;
+width: 200%;
+height: 200%;
+top: -50%;
+left: -50%;
+background: radial-gradient(circle at center, rgba(0, 255, 157, 0.1) 0%, transparent 70%);
+animation: rotate 20s linear infinite;
+}
+@keyframes rotate {
+from { transform: rotate(0deg); }
+to { transform: rotate(360deg); }
+}
+.skill-section {
+    background: linear-gradient(to bottom, rgba(26, 30, 35, 0.3), transparent);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+.skill-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.5rem;
+}
+.skill-item {
+    background: rgba(26, 30, 35, 0.7);
+    border: 1px solid rgba(0, 255, 157, 0.1);
+    border-radius: 12px;
+    padding: 1.25rem;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.skill-item:hover {
+    border-color: var(--neon-green);
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 255, 157, 0.1);
+}
+.skill-name {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+.skill-level {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: auto;
+}
+.skill-level-fill {
+    height: 100%;
+    background: var(--neon-green);
+    border-radius: 2px;
+    transition: width 1s ease;
+}
+.skills-universe {
+    position: relative;
+    min-height: 100vh;
+    perspective: 1000px;
+    overflow: hidden;
+    background: radial-gradient(circle at center, rgba(0, 255, 157, 0.1) 0%, transparent 70%);
+}
+.skill-category {
+    position: relative;
+    margin: 4rem 0;
+    transform-style: preserve-3d;
+}
+.category-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--neon-green);
+    text-shadow: 0 0 10px rgba(0, 255, 157, 0.5);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease forwards;
+}
+.orb-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+}
+.skill-orb {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    perspective: 1000px;
+    cursor: pointer;
+    opacity: 0;
+    transform: scale(0.8);
+    animation: fadeInScale 0.6s ease forwards;
+    animation-delay: var(--delay);
+}
+.orb-content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.8s ease;
+}
+.skill-orb:hover .orb-content {
+    transform: rotateY(180deg);
+}
+.orb-front, .orb-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background: rgba(26, 30, 35, 0.8);
+    border: 2px solid rgba(0, 255, 157, 0.3);
+    box-shadow: 0 0 20px rgba(0, 255, 157, 0.2);
+}
+.orb-back {
+    transform: rotateY(180deg);
+    background: var(--neon-green);
+    color: #0D1117;
+}
+.orb-back .skill-icon {
+    color: #0D1117;
+}
+.skill-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+}
+.skill-level {
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+}
+.skill-level-fill {
+    height: 100%;
+    background: var(--neon-green);
+    box-shadow: 0 0 10px var(--neon-green);
+    width: var(--level);
+}
+.floating {
+    animation: floating 3s ease-in-out infinite;
+    animation-delay: var(--delay);
+}
+@keyframes floating {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+.skills-container {
+    position: relative;
+    padding: 4rem 0;
+    background: linear-gradient(180deg, rgba(13, 17, 23, 0) 0%, rgba(0, 255, 157, 0.03) 100%);
+}
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+.skill-group {
+    background: rgba(26, 30, 35, 0.4);
+    border-left: 3px solid var(--neon-green);
+    padding: 2rem;
+    transition: all 0.3s ease;
+}
+.skill-group:hover {
+    transform: translateX(10px);
+    background: rgba(26, 30, 35, 0.6);
+}
+.group-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--neon-green);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.group-title i {
+    font-size: 1.75rem;
+}
+.skill-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+.skill-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+.skill-item:hover {
+    background: rgba(0, 255, 157, 0.1);
+}
+.skill-info {
+    flex: 1;
+}
+.skill-name {
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    color: #fff;
+}
+.skill-details {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+.skill-level {
+    width: 100px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    position: relative;
+    margin-top: 0.5rem;
+}
+.skill-level::after {
+    content: '';
+    position: absolute;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: var(--neon-green);
+    width: var(--level);
+    box-shadow: 0 0 10px var(--neon-green);
+    transition: width 0.5s ease;
+}
+.hexagon-container {
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.2); opacity: 0.8; }
+}
+
+.animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.animate-spin {
+    animation: spin 10s linear infinite;
+}
+
+.glow-effect {
+    text-shadow: 0 0 10px var(--neon-green),
+                 0 0 20px var(--neon-green),
+                 0 0 30px var(--neon-green);
+}
+
+/* Enhance hexagon hover effect */
+.hexagon {
+    position: relative;
+    transition: all 0.5s ease;
+}
+
+.hexagon:hover {
+    transform: scale(1.05);
+    background: linear-gradient(145deg, rgba(0, 255, 157, 0.2), rgba(0, 255, 157, 0.1));
+    box-shadow: 0 0 30px rgba(0, 255, 157, 0.3);
+}
+
+.hexagon::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(45deg, transparent, rgba(0, 255, 157, 0.3), transparent);
+    animation: borderRotate 4s linear infinite;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+@keyframes borderRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Add these new styles */
+.image-container {
+    position: relative;
+    width: 320px;
+    height: 400px;
+    margin: -2rem auto 0;
+}
+
+.image-frame {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 2px solid rgba(0, 255, 157, 0.3);
+    background: rgba(13, 17, 23, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+.image-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.frame-decoration {
+    position: absolute;
+    inset: -2px;
+    border: 2px solid rgba(0, 255, 157, 0.2);
+    border-radius: 20px;
+    pointer-events: none;
+}
+
+.bg-gradient {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, 
+        rgba(0, 255, 157, 0.15) 0%, 
+        rgba(0, 255, 157, 0.05) 25%, 
+        transparent 50%);
+    animation: pulse-gradient 4s ease-in-out infinite;
+}
+
+@keyframes pulse-gradient {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.1); }
+}
+
+.floating-dots {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: var(--neon-green);
+    border-radius: 50%;
+    filter: blur(1px);
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+.explore-skills-btn {
+}
+
+/* Add these styles before the closing style tag */
+.explore-button {
+    position: relative;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(90deg, rgba(0, 255, 157, 0.1), rgba(0, 255, 157, 0.2));
+    border: 1px solid rgba(0, 255, 157, 0.3);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.explore-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 157, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.explore-button:hover::before {
+    left: 100%;
+}
+
+.explore-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 255, 157, 0.2);
+    border-color: var(--neon-green);
+}
+
+.explore-icon {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+}
+
+.explore-icon::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: rgba(0, 255, 157, 0.2);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 0.5; }
+}
+
+/* Add these styles before the closing style tag */
+.neon-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 2rem;
+    background: rgba(0, 255, 157, 0.1);
+    border: 2px solid var(--neon-green);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.neon-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--neon-green);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+}
+
+.neon-button:hover::before {
+    opacity: 0.1;
+}
+
+.neon-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(0, 255, 157, 0.3);
+}
+
+.neon-button span {
+    position: relative;
+    z-index: 1;
+}
+
+.neon-button .button-icon {
+    position: relative;
+    z-index: 1;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.neon-button .button-icon i {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.neon-button:hover .button-icon i {
+    transform: translateX(5px);
+}
+
+.neon-button::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 100%;
+    top: 0;
+    left: -50%;
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgba(0, 255, 157, 0.3),
+        transparent
+    );
+    transform: skewX(-25deg);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -50%; }
+    100% { left: 150%; }
+}
+</style>
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#00FF9D',
+secondary: '#1A1E23'
+},
+borderRadius: {
+'none': '0px',
+'sm': '4px',
+DEFAULT: '8px',
+'md': '12px',
+'lg': '16px',
+'xl': '20px',
+'2xl': '24px',
+'3xl': '32px',
+'full': '9999px',
+'button': '8px'
+}
+}
+}
+}
+</script>
+</head>
+<body class="font-sans">
+<div class="page-transition"></div>
+<header class="fixed w-full top-0 z-50 bg-[#0D1117] border-b border-gray-800">
+<nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+<a href="index.html" class="text-3xl font-['Pacifico'] text-primary">AB</a>
+<div class="hidden md:flex space-x-8">
+<a href="index.html" class="nav-link text-white hover:text-primary">HOME</a>
+<a href="about.html" class="nav-link text-white hover:text-primary">ABOUT</a>
+<a href="projects.html" class="nav-link text-white hover:text-primary">PROJECTS</a>
+<a href="education.html" class="nav-link text-white hover:text-primary">EDUCATION</a>
+<a href="certifications.html" class="nav-link text-white hover:text-primary">CERTIFICATIONS</a>
+<a href="contact.html" class="nav-link text-white hover:text-primary">CONTACT</a>
+</div>
+<button class="md:hidden text-white focus:outline-none">
+<i class="ri-menu-line text-2xl"></i>
+</button>
+</nav>
+</header>
+<main class="pt-16">
+    <!-- Hero Section -->
+    <section class="about-section py-12 relative">
+        <!-- Background gradients -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-0 left-0 w-1/2 h-1/2 bg-gradient"></div>
+            <div class="absolute bottom-0 right-0 w-1/2 h-1/2 bg-gradient" style="animation-delay: -2s;"></div>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-6xl mx-auto">
+                <div class="flex flex-col md:flex-row items-start justify-between gap-12">
+                    <!-- Image Section (Moved to left) -->
+                    <div class="md:w-2/5 md:sticky md:top-16">
+                        <div class="image-container">
+                            <div class="image-frame">
+                                <img src="Anu.jpeg" alt="Anu Baluguri" class="object-cover object-center">
+                                <div class="frame-decoration"></div>
+                                <!-- Floating dots -->
+                                <div class="floating-dots" style="top: -20px; left: 10%;"></div>
+                                <div class="floating-dots" style="top: 10%; right: -20px; animation-delay: -1s;"></div>
+                                <div class="floating-dots" style="bottom: -20px; right: 10%; animation-delay: -2s;"></div>
+                            </div>
+                            <!-- Additional decorative elements -->
+                            <div class="absolute -top-4 -left-4 w-24 h-24 border-2 border-primary/20 rounded-xl"></div>
+                            <div class="absolute -bottom-4 -right-4 w-24 h-24 border-2 border-primary/20 rounded-xl"></div>
+                        </div>
+                    </div>
+
+                    <!-- Content Section (Moved to right) -->
+                    <div class="md:w-3/5">
+                        <h1 class="text-4xl font-bold mb-4">About Me</h1>
+                        <p class="text-gray-300 text-lg mb-4 leading-relaxed">
+                            As an AI & Machine Learning Specialist, I focus on developing robust and secure AI systems that bridge the gap between cutting-edge research and practical applications. My expertise spans across large language models, reinforcement learning, and knowledge distillation, with a particular emphasis on model optimization and security.
+                        </p>
+                        <p class="text-gray-300 text-lg mb-8 leading-relaxed">
+                            Currently pursuing my Master's in Computer Science, I combine strong theoretical foundations with hands-on experience in implementing state-of-the-art AI architectures. I am passionate about creating AI solutions that are not only powerful but also efficient, secure, and ethically sound.
+                        </p>
+                        
+                        <!-- Technical Skills Link -->
+                        <div class="mb-8">
+                            <button onclick="scrollToSkills()" class="group flex items-center gap-3 text-primary hover:text-white transition-all duration-300">
+                                <span class="text-xl font-semibold group-hover:translate-x-1 transition-transform duration-300">Explore My Technical Skills</span>
+                                <i class="ri-arrow-right-line text-2xl group-hover:translate-x-2 transition-transform duration-300"></i>
+                            </button>
+                        </div>
+
+                        <!-- Social Links -->
+                        <div class="flex items-center gap-8">
+                            <a href="mailto:anubaluguri122@gmail.com" class="group flex items-center gap-3 text-primary hover:text-white transition-all duration-300">
+                                <i class="ri-mail-line text-2xl"></i>
+                                <span class="text-lg group-hover:translate-x-1 transition-transform duration-300">Email</span>
+                            </a>
+                            <a href="https://www.linkedin.com/in/baluguri-anu-536a63231" target="_blank" class="group flex items-center gap-3 text-primary hover:text-white transition-all duration-300">
+                                <i class="ri-linkedin-line text-2xl"></i>
+                                <span class="text-lg group-hover:translate-x-1 transition-transform duration-300">LinkedIn</span>
+                            </a>
+                            <a href="https://github.com/AnuBaluguri" target="_blank" class="group flex items-center gap-3 text-primary hover:text-white transition-all duration-300">
+                                <i class="ri-github-line text-2xl"></i>
+                                <span class="text-lg group-hover:translate-x-1 transition-transform duration-300">GitHub</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="technical-skills" class="skills-container scroll-mt-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold mb-12">Technical Expertise</h2>
+            
+            <div class="skills-grid">
+                <!-- AI & Machine Learning -->
+                <div class="skill-group">
+                    <h3 class="group-title">
+                        <i class="ri-brain-line"></i>
+                        AI & Machine Learning
+                    </h3>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <div class="skill-name">Generative AI</div>
+                                <div class="skill-details">LLMs, Diffusion Models, GANs</div>
+                                <div class="skill-level">
+                                    <div class="skill-level-fill" style="--level: 95%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <div class="skill-name">Reinforcement Learning</div>
+                                <div class="skill-details">RLHF, DQN, Policy Gradients</div>
+                                <div class="skill-level">
+                                    <div class="skill-level-fill" style="--level: 90%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <div class="skill-name">Transformers</div>
+                                <div class="skill-details">BERT, GPT, T5, ViT</div>
+                                <div class="skill-level">
+                                    <div class="skill-level-fill" style="--level: 90%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <div class="skill-name">Natural Language Processing</div>
+                                <div class="skill-details">Text Generation, Classification, QA</div>
+                                <div class="skill-level">
+                                    <div class="skill-level-fill" style="--level: 90%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Programming Languages -->
+                <div class="skill-group">
+                    <h3 class="group-title">
+                        <i class="ri-code-box-line"></i>
+                        Programming Languages
+                    </h3>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <div class="skill-name">Python</div>
+                                <div class="skill-details">FastAPI, Django, Flask, NumPy</div>
+                                <div class="skill-level">
+                                    <div class="skill-level-fill" style="--level: 95%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <div class="skill-name">C/C++</div>
+                                <div class="skill-details">STL, OpenCV, System Programming</div>
+                                <div class="skill-level">
+                                    <div class="skill-level-fill" style="--level: 85%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <div class="skill-name">Java</div>
+                                <div class="skill-details">Spring Boot, Android Development</div>
+                                <div class="skill-level">
+                                    <div class="skill-level-fill" style="--level: 80%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <div class="skill-name">Web Technologies</div>
+                                <div class="skill-details">HTML, CSS, JavaScript, React</div>
+                                <div class="skill-level">
+                                    <div class="skill-level-fill" style="--level: 85%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ML & Deep Learning -->
+                <div class="skill-group">
+                    <h3 class="group-title">
+                        <i class="ri-terminal-box-line"></i>
+                        ML & Deep Learning
+                    </h3>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <div class="skill-name">Deep Learning</div>
+                                <div class="skill-details">PyTorch, TensorFlow, Lightning</div>
+                                <div class="skill-level">
+                                    <div class="skill-level-fill" style="--level: 90%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <div class="skill-name">ML Frameworks</div>
+                                <div class="skill-details">HuggingFace, LangChain, PEFT</div>
+                                <div class="skill-level">
+                                    <div class="skill-level-fill" style="--level: 90%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <div class="skill-name">Computer Vision</div>
+                                <div class="skill-details">OpenCV, YOLO, Detectron2</div>
+                                <div class="skill-level">
+                                    <div class="skill-level-fill" style="--level: 85%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Infrastructure -->
+                <div class="skill-group">
+                    <h3 class="group-title">
+                        <i class="ri-cloud-line"></i>
+                        Infrastructure
+                    </h3>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <div class="skill-name">Cloud Services</div>
+                                <div class="skill-details">AWS, GCP, Azure</div>
+                                <div class="skill-level">
+                                    <div class="skill-level-fill" style="--level: 85%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <div class="skill-name">DevOps</div>
+                                <div class="skill-details">Docker, Kubernetes, CI/CD</div>
+                                <div class="skill-level">
+                                    <div class="skill-level-fill" style="--level: 85%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <div class="skill-name">Databases</div>
+                                <div class="skill-details">SQL, MongoDB, Redis</div>
+                                <div class="skill-level">
+                                    <div class="skill-level-fill" style="--level: 90%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<script>
+    document.querySelector('.md\\:hidden').addEventListener('click', function() {
+    const nav = document.querySelector('.md\\:flex');
+    nav.classList.toggle('hidden');
+    nav.classList.toggle('flex');
+    nav.classList.toggle('flex-col');
+    nav.classList.toggle('absolute');
+    nav.classList.toggle('top-16');
+    nav.classList.toggle('left-0');
+    nav.classList.toggle('w-full');
+    nav.classList.toggle('bg-[#0D1117]');
+    nav.classList.toggle('p-4');
+    });
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const targetId = this.getAttribute('href');
+    const targetElement = document.querySelector(targetId);
+    if (targetElement) {
+    const headerOffset = 80;
+    const elementPosition = targetElement.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+    window.scrollTo({
+    top: offsetPosition,
+    behavior: 'smooth'
+    });
+    }
+    });
+    });
+    </script>
+<script src="transition.js"></script>
+<style>
+@keyframes bounce {
+    0%, 100% { transform: translateY(0) translateX(-50%); }
+    50% { transform: translateY(-10px) translateX(-50%); }
+}
+.animate-bounce {
+    animation: bounce 2s infinite;
+}
+</style>
+<script>
+// Add this script before the closing body tag
+function scrollToSkills() {
+    const targetElement = document.getElementById('technical-skills');
+    if (targetElement) {
+        const headerHeight = document.querySelector('header').offsetHeight;
+        const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - headerHeight;
+
+        window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+        });
+    }
+}
+</script>
+</body>
+</html>   
