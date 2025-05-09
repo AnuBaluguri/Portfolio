@@ -246,6 +246,7 @@ DEFAULT: '8px',
         <option value="Computer Vision">Computer Vision</option>
         <option value="Reinforcement Learning">Reinforcement Learning</option>
         <option value="Deep Learning">Deep Learning</option>
+        <option value="Full Stack">Full Stack</option>
     </select>
     <i class="ri-arrow-down-s-line absolute right-2 top-1/2 -translate-y-1/2 text-white pointer-events-none"></i>
 </div>
@@ -292,14 +293,14 @@ DEFAULT: '8px',
 
 <div class="bg-[#0D1117] rounded-lg overflow-hidden group cursor-pointer project-item relative" onclick="showProjectDetails(4)">
     <div class="h-48 bg-gray-800 flex items-center justify-center relative">
-        <img src="https://public.readdy.ai/ai/img_res/84c9c7d43ca85617c49dbb0554400ab0.jpg" alt="AI Stock Market Prediction" class="w-full h-full object-cover">
+        <img src="https://public.readdy.ai/ai/img_res/84c9c7d43ca85617c49dbb0554400ab0.jpg" alt="Full Stack Amazon Clone" class="w-full h-full object-cover">
         <div class="project-overlay">
             <span class="view-details">View Details</span>
         </div>
     </div>
     <div class="p-4">
-        <h3 class="text-xl font-bold mb-2">AI-Driven Stock Market Prediction with RL, LLMs & Multimodal Learning</h3>
-        <p class="text-gray-400 text-sm">Reinforcement Learning & NLP</p>
+        <h3 class="text-xl font-bold mb-2">Full Stack Amazon Clone</h3>
+        <p class="text-gray-400 text-sm">Full Stack</p>
     </div>
 </div>    
 </div>
@@ -387,8 +388,8 @@ const allProjects = {
         },
         {
             id: 4,
-            title: "AI-Driven Stock Market Prediction with RL, LLMs & Multimodal Learning",
-            category: "Reinforcement Learning & NLP",
+            title: "Full Stack Amazon Clone",
+            category: "Full Stack",
             image: "https://public.readdy.ai/ai/img_res/84c9c7d43ca85617c49dbb0554400ab0.jpg"
         }
     ],
@@ -467,27 +468,30 @@ const projectDetails = {
             <div class="space-y-4">
                 <h2 class="text-2xl font-bold text-primary mb-4">Project Overview</h2>
                 <div class="space-y-2">
-                    <p class="text-gray-300">• Architected a reinforcement learning-driven adversarial defense framework with dynamic threat detection and mitigating prompt injections, stealth perturbations, and gradient-based exploits while preserving generative integrity.</p>
-                    <p class="text-gray-300">• Engineered a meta-learning resilience pipeline by integrating contrastive adversarial training, uncertainty quantification, and self-correcting logical constraints, enhancing interpretability and fortifying robustness against evolving adversarial strategies.</p>
-                    <p class="text-gray-300">• Developed a transformer-based perturbation module with iterative feedback loops, contextual anomaly detection, leveraging gradient-aware robustness and Hugging Face LLM validation to enhance security without compromising performance</p>
+                    <p class="text-gray-300">• Engineered a multi-stage adversarial training pipeline for Mistral-7B using LoRA fine-tuning across Open-Instruct (400K samples),
+followed by hybridized curriculum learning that improved robustness by 30% on adversarial tasks.</p>
+                    <p class="text-gray-300">• Evaluated TruthfulQA responses, with 62% initially failing as judged by LLaMA-3B; failures were parsed into structured
+reasoning formats using Graph-of-Thought (GoT) tags with a quantized LLaMA 3–8B (llama3.1:8b-instruct-q4_K_M) model.</p>
+                    <p class="text-gray-300">• Executed two feedback cycles using parsed failures, increasing TruthfulQA pass rate by 20% (from 35% to 55%); feedback was
+designed to simulate reasoning graph structures, capturing interlinked reasoning failures in a linearized GoT-tag format. Employed
+single-GPU training (A100/H100, PCIe/SXM) on RunPod for efficient deployment.</p>
+                    <div class="mt-4">
+                        <a href="https://github.com/AnuBaluguri/Prosense_Defending_Text_Generation_with_Adversarial_Feedback" target="_blank" class="text-primary hover:underline flex items-center">
+                            <i class="ri-github-fill mr-2"></i>View on GitHub
+                        </a>
                 </div>
             </div>
         `
     },
     4: {
-        title: "AI-Driven Stock Market Prediction with RL, LLMs & Multimodal Learning",
+        title: "Full Stack Amazon Clone",
         description: `
             <div class="space-y-4">
                 <h2 class="text-2xl font-bold text-primary mb-4">Project Overview</h2>
                 <div class="space-y-2">
-                    <p class="text-gray-300">• Engineered a multimodal AI-driven trading system, integrating time-series forecasting, sentiment-aware NLP models (Mistral 7B/Llama 2 7B), and visual pattern recognition, enabling holistic market analysis and adaptive decision-making.</p>
-                    <p class="text-gray-300">• Explored Temporal Fusion Transformer (TFT) and reinforcement learning paradigms (PPO, SAC) to dynamically optimize trading strategies, leveraging real-time market volatility and policy-gradient-based portfolio rebalancing.</p>
-                    <p class="text-gray-300">• Built a low-latency inference and execution pipeline using FastAPI and Ollama, optimizing on-device and distributed inference for real-time trade execution, ensuring high-throughput, low-latency market response under fluctuating conditions.</p>
-                    <div class="mt-4">
-                        <a href="https://github.com/AnuBaluguri/AI-Stock-Trading" target="_blank" class="text-primary hover:underline flex items-center">
-                            <i class="ri-github-fill mr-2"></i>View on GitHub
-                        </a>
-                    </div>
+                    <p class="text-gray-300">• Developed a responsive frontend using React.js, Material-UI, and React Router DOM, with routing and state via Context API.</p>
+                    <p class="text-gray-300">• Enabled secure login and real-time cart/product sync using Firebase Auth and Firestore, with atomic batch writes for speed.</p>
+                    <p class="text-gray-300">• Simulated checkout via Stripe API and Cloud Functions, deploying on Firebase Hosting with CI-style rapid iteration.</p>
                 </div>
             </div>
         `
