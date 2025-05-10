@@ -247,11 +247,24 @@ DEFAULT: '8px',
         <option value="Reinforcement Learning">Reinforcement Learning</option>
         <option value="Deep Learning">Deep Learning</option>
         <option value="Full Stack">Full Stack</option>
+        <option value="Generative AI">Generative AI</option>
     </select>
     <i class="ri-arrow-down-s-line absolute right-2 top-1/2 -translate-y-1/2 text-white pointer-events-none"></i>
 </div>
 </div>
 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8" id="projectsGrid">
+<div class="bg-[#0D1117] rounded-lg overflow-hidden group cursor-pointer project-item relative" onclick="showProjectDetails(3)">
+    <div class="h-48 bg-gray-800 flex items-center justify-center relative">
+        <img src="https://public.readdy.ai/ai/img_res/725a8a3de127e187ba1659343cf54c2d.jpg" alt="Prosense" class="w-full h-full object-cover">
+        <div class="project-overlay">
+            <span class="view-details">View Details</span>
+        </div>
+    </div>
+    <div class="p-4">
+        <h3 class="text-xl font-bold mb-2">Prosense - LLM Defense</h3>
+        <p class="text-gray-400 text-sm">Generative AI</p>
+    </div>
+</div>    
 <div class="bg-[#0D1117] rounded-lg overflow-hidden group cursor-pointer project-item relative" onclick="showProjectDetails(1)">
     <div class="h-48 bg-gray-800 flex items-center justify-center relative">
         <img src="https://public.readdy.ai/ai/img_res/97d73600689cc411a29029f847650ea4.jpg" alt="Network Security Project" class="w-full h-full object-cover">
@@ -277,19 +290,6 @@ DEFAULT: '8px',
         <p class="text-gray-400 text-sm">Computer Vision</p>
     </div>
 </div>
-
-<div class="bg-[#0D1117] rounded-lg overflow-hidden group cursor-pointer project-item relative" onclick="showProjectDetails(3)">
-    <div class="h-48 bg-gray-800 flex items-center justify-center relative">
-        <img src="https://public.readdy.ai/ai/img_res/725a8a3de127e187ba1659343cf54c2d.jpg" alt="Prosense" class="w-full h-full object-cover">
-        <div class="project-overlay">
-            <span class="view-details">View Details</span>
-        </div>
-    </div>
-    <div class="p-4">
-        <h3 class="text-xl font-bold mb-2">Prosense - LLM Defense</h3>
-        <p class="text-gray-400 text-sm">Natural Language Processing</p>
-    </div>
-</div>    
 
 <div class="bg-[#0D1117] rounded-lg overflow-hidden group cursor-pointer project-item relative" onclick="showProjectDetails(4)">
     <div class="h-48 bg-gray-800 flex items-center justify-center relative">
@@ -383,7 +383,7 @@ const allProjects = {
         {
             id: 3,
             title: "Prosense - LLM Defense",
-            category: "Natural Language Processing",
+            category: "Generative AI",
             image: "https://public.readdy.ai/ai/img_res/725a8a3de127e187ba1659343cf54c2d.jpg"
         },
         {
