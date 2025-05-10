@@ -241,19 +241,20 @@ DEFAULT: '8px',
 <div class="relative">
     <select id="categoryFilter" class="bg-[#1A1E23] text-white px-4 py-2 rounded-lg appearance-none pr-8 cursor-pointer">
         <option value="all">All Categories</option>
-        <option value="Machine Learning">Machine Learning</option>
-        <option value="Natural Language Processing">NLP</option>
         <option value="Computer Vision">Computer Vision</option>
-        <option value="Reinforcement Learning">Reinforcement Learning</option>
+        <option value="Machine Learning">Machine Learning</option>
         <option value="Deep Learning">Deep Learning</option>
         <option value="Full Stack">Full Stack</option>
         <option value="Generative AI">Generative AI</option>
+        <option value="Natural Language Processing">NLP</option>
+        <option value="Reinforcement Learning">Reinforcement Learning</option>
+        
     </select>
     <i class="ri-arrow-down-s-line absolute right-2 top-1/2 -translate-y-1/2 text-white pointer-events-none"></i>
 </div>
 </div>
 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8" id="projectsGrid">
-<div class="bg-[#0D1117] rounded-lg overflow-hidden group cursor-pointer project-item relative" onclick="showProjectDetails(3)">
+<div class="bg-[#0D1117] rounded-lg overflow-hidden group cursor-pointer project-item relative" onclick="showProjectDetails(1)">
     <div class="h-48 bg-gray-800 flex items-center justify-center relative">
         <img src="https://public.readdy.ai/ai/img_res/725a8a3de127e187ba1659343cf54c2d.jpg" alt="Prosense" class="w-full h-full object-cover">
         <div class="project-overlay">
@@ -265,7 +266,7 @@ DEFAULT: '8px',
         <p class="text-gray-400 text-sm">Generative AI</p>
     </div>
 </div>    
-<div class="bg-[#0D1117] rounded-lg overflow-hidden group cursor-pointer project-item relative" onclick="showProjectDetails(1)">
+<div class="bg-[#0D1117] rounded-lg overflow-hidden group cursor-pointer project-item relative" onclick="showProjectDetails(2)">
     <div class="h-48 bg-gray-800 flex items-center justify-center relative">
         <img src="https://public.readdy.ai/ai/img_res/97d73600689cc411a29029f847650ea4.jpg" alt="Network Security Project" class="w-full h-full object-cover">
         <div class="project-overlay">
@@ -278,7 +279,20 @@ DEFAULT: '8px',
     </div>
 </div>
 
-<div class="bg-[#0D1117] rounded-lg overflow-hidden group cursor-pointer project-item relative" onclick="showProjectDetails(2)">
+<div class="bg-[#0D1117] rounded-lg overflow-hidden group cursor-pointer project-item relative" onclick="showProjectDetails(3)">
+    <div class="h-48 bg-gray-800 flex items-center justify-center relative">
+        <img src="https://public.readdy.ai/ai/img_res/84c9c7d43ca85617c49dbb0554400ab0.jpg" alt="Full Stack Amazon Clone" class="w-full h-full object-cover">
+        <div class="project-overlay">
+            <span class="view-details">View Details</span>
+        </div>
+    </div>
+    <div class="p-4">
+        <h3 class="text-xl font-bold mb-2">Full Stack Amazon Clone</h3>
+        <p class="text-gray-400 text-sm">Full Stack</p>
+    </div>
+</div>  
+
+<div class="bg-[#0D1117] rounded-lg overflow-hidden group cursor-pointer project-item relative" onclick="showProjectDetails(4)">
     <div class="h-48 bg-gray-800 flex items-center justify-center relative">
         <img src="https://public.readdy.ai/ai/img_res/1ccdf032fb1b8ee964c5bb61c628b4b6.jpg" alt="Deepfake Detection" class="w-full h-full object-cover">
         <div class="project-overlay">
@@ -290,19 +304,6 @@ DEFAULT: '8px',
         <p class="text-gray-400 text-sm">Computer Vision</p>
     </div>
 </div>
-
-<div class="bg-[#0D1117] rounded-lg overflow-hidden group cursor-pointer project-item relative" onclick="showProjectDetails(4)">
-    <div class="h-48 bg-gray-800 flex items-center justify-center relative">
-        <img src="https://public.readdy.ai/ai/img_res/84c9c7d43ca85617c49dbb0554400ab0.jpg" alt="Full Stack Amazon Clone" class="w-full h-full object-cover">
-        <div class="project-overlay">
-            <span class="view-details">View Details</span>
-        </div>
-    </div>
-    <div class="p-4">
-        <h3 class="text-xl font-bold mb-2">Full Stack Amazon Clone</h3>
-        <p class="text-gray-400 text-sm">Full Stack</p>
-    </div>
-</div>    
 </div>
 
 <!-- Project Details Modal -->
@@ -370,27 +371,27 @@ const allProjects = {
     visible: [
         {
             id: 1,
-            title: "Optimizing Network Security via Ensemble Learning",
-            category: "Machine Learning",
-            image: "https://public.readdy.ai/ai/img_res/97d73600689cc411a29029f847650ea4.jpg"
-        },
-        {
-            id: 2,
-            title: "Deepfake Detection",
-            category: "Computer Vision",
-            image: "https://public.readdy.ai/ai/img_res/1ccdf032fb1b8ee964c5bb61c628b4b6.jpg"
-        },
-        {
-            id: 3,
             title: "Prosense - LLM Defense",
             category: "Generative AI",
             image: "https://public.readdy.ai/ai/img_res/725a8a3de127e187ba1659343cf54c2d.jpg"
         },
         {
-            id: 4,
+            id: 2,
+            title: "Optimizing Network Security via Ensemble Learning",
+            category: "Machine Learning",
+            image: "https://public.readdy.ai/ai/img_res/97d73600689cc411a29029f847650ea4.jpg"
+        },
+        {
+            id: 3,
             title: "Full Stack Amazon Clone",
             category: "Full Stack",
             image: "https://public.readdy.ai/ai/img_res/84c9c7d43ca85617c49dbb0554400ab0.jpg"
+        },
+        {
+            id: 4,
+            title: "Deepfake Detection",
+            category: "Computer Vision",
+            image: "https://public.readdy.ai/ai/img_res/1ccdf032fb1b8ee964c5bb61c628b4b6.jpg"
         }
     ],
     hidden: [
@@ -423,7 +424,7 @@ const allProjects = {
 
 // Project details data
 const projectDetails = {
-    1: {
+    2: {
         title: "Optimizing Network Security via Ensemble Learning",
         description: `
             <div class="space-y-4">
@@ -444,7 +445,7 @@ const projectDetails = {
             </div>
         `
     },
-    2: {
+    4: {
         title: "Deepfake Detection",
         description: `
             <div class="space-y-4">
@@ -462,7 +463,7 @@ const projectDetails = {
             </div>
         `
     },
-    3: {
+    1: {
         title: "Prosense - Defending Text Generating LLM's",
         description: `
             <div class="space-y-4">
@@ -483,7 +484,7 @@ single-GPU training (A100/H100, PCIe/SXM) on RunPod for efficient deployment.</p
             </div>
         `
     },
-    4: {
+    3: {
         title: "Full Stack Amazon Clone",
         description: `
             <div class="space-y-4">
