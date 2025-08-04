@@ -287,6 +287,19 @@ DEFAULT: '8px',
         </div>
     </div>
     <div class="p-4">
+        <h3 class="text-xl font-bold mb-2">End-to-End MLOps Pipeline for Customer Churn Prediction</h3>
+        <p class="text-gray-400 text-sm">MLOps</p>
+    </div>
+</div>  
+
+<div class="bg-[#0D1117] rounded-lg overflow-hidden group cursor-pointer project-item relative" onclick="showProjectDetails(3)">
+    <div class="h-48 bg-gray-800 flex items-center justify-center relative">
+        <img src="https://public.readdy.ai/ai/img_res/84c9c7d43ca85617c49dbb0554400ab0.jpg" alt="Full Stack Amazon Clone" class="w-full h-full object-cover">
+        <div class="project-overlay">
+            <span class="view-details">View Details</span>
+        </div>
+    </div>
+    <div class="p-4">
         <h3 class="text-xl font-bold mb-2">Full Stack Amazon Clone</h3>
         <p class="text-gray-400 text-sm">Full Stack</p>
     </div>
@@ -383,8 +396,8 @@ const allProjects = {
         },
         {
             id: 3,
-            title: "Full Stack Amazon Clone",
-            category: "Full Stack",
+            title: "End-to-End MLOps Pipeline for Customer Churn Prediction",
+            category: "MLOps",
             image: "https://public.readdy.ai/ai/img_res/84c9c7d43ca85617c49dbb0554400ab0.jpg"
         },
         {
@@ -395,6 +408,12 @@ const allProjects = {
         }
     ],
     hidden: [
+        {
+            id: 9,
+            title: "Full Stack Amazon Clone",
+            category: "Full Stack",
+            image: "https://public.readdy.ai/ai/img_res/84c9c7d43ca85617c49dbb0554400ab0.jpg"
+        },
         {
             id: 7,
             title: "Indian Sign Language Recognition",
@@ -485,6 +504,19 @@ single-GPU training (A100/H100, PCIe/SXM) on RunPod for efficient deployment.</p
         `
     },
     3: {
+        title: "End-to-End MLOps Pipeline for Customer Churn Prediction",
+        description: `
+            <div class="space-y-4">
+                <h2 class="text-2xl font-bold text-primary mb-4">Project Overview</h2>
+                <div class="space-y-2">
+                    <p class="text-gray-300">• Built a scalable ML platform on Azure supporting end-to-end data processing, model development, versioning, and deployment with MLFlow for experiment tracking and governance.</p>
+                    <p class="text-gray-300">• Containerized model inference APIs using Docker and deployed them on Azure Kubernetes Service (AKS) for reliable, scalable model serving.</p>
+                    <p class="text-gray-300">• Automated cloud infrastructure provisioning with Terraform and CI/CD pipelines using GitHub Actions, collaborating crossfunctionally to ensure smooth production integration of ML models.</p>
+                </div>
+            </div>
+        `
+    },
+    9: {
         title: "Full Stack Amazon Clone",
         description: `
             <div class="space-y-4">
@@ -680,3 +712,4 @@ behavior: 'smooth'
 <script src="transition.js"></script>
 </body>
 </html>
+
